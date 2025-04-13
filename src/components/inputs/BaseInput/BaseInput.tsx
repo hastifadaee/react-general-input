@@ -16,6 +16,7 @@ const BaseInput = ({
   inputValue,
   setInputFocus,
   thousandSeparate,
+  
   ...props
 }: TBaseInput) => {
   return (
