@@ -2,21 +2,20 @@ import { useEffect, useState } from "react";
 import BaseInput from "../BaseInput/BaseInput";
 import { TBaseTextInput } from "../types/TextInputTypes";
 import TextInputWrapper from "../TextInputWrapper/TextInputWrapper";
-import * as React from "react";
 
 const BaseTextInput = ({
   required = false,
   rhfRegister,
-  handleChange,
+  onChange,
   haveKeyboard,
   numericKeyboard,
   defaultValue,
   maxLength,
   placeholder,
   type,
-  handleBlur,
+  onBlur,
   disabled,
-  ltr,
+  dir,
   name,
   label,
   iconClickCallBack,
@@ -26,21 +25,25 @@ const BaseTextInput = ({
   endIcon,
   startIcon,
   iconVariant,
+  inputClassName,
+  labelClassName,
+  ...props
 }: TBaseTextInput) => {
-  const [inputValue, setInputValue] = useState(defaultValue ?? "");
+  const [inputValue, setInputValue] = useState<string>(defaultValue ?? "");
   const [inputFocus, setInputFocus] = useState(false);
   useEffect(() => {
     setInputValue(defaultValue || "");
   }, [defaultValue]);
   return (
     <TextInputWrapper
+      inputClassName={inputClassName}
+      labelClassName={labelClassName}
       required={required}
       haveKeyboard={haveKeyboard}
       numericKeyboard={numericKeyboard}
       inputValue={inputValue}
       setInputValue={setInputValue}
       label={label}
-      type={type ?? "text"}
       error={error}
       helperText={helperText}
       className={className}
@@ -53,22 +56,20 @@ const BaseTextInput = ({
       iconVariant={iconVariant}
     >
       <BaseInput
+        {...props}
         inputValue={inputValue}
         onChange={(e) => {
           rhfRegister?.onChange(e);
           setInputValue(e.target.value);
-          handleChange?.(e);
+          onChange?.(e);
           rhfRegister?.onChange(e);
         }}
-        maxLength={maxLength}
         rhfRegister={rhfRegister}
         placeholder={placeholder}
-        handleBlur={handleBlur}
         disabled={disabled}
-        ltr={ltr}
-        name={name}
         iconClickCallBack={iconClickCallBack}
         setInputFocus={setInputFocus}
+        name={name}
       />
     </TextInputWrapper>
   );

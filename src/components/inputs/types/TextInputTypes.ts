@@ -1,49 +1,48 @@
 import { ChangeEvent, Dispatch, ReactNode, SetStateAction } from "react";
 import { ChangeHandler } from "react-hook-form";
 
+export type HTMLInputType = Omit<
+  React.InputHTMLAttributes<HTMLInputElement>,
+  "value" | "type" | "defaultValue"
+>;
+
 export type TTextInputWrapper = {
+  labelClassName?: string;
+  inputClassName?: string;
   defaultValue?: string;
+  inputValue: string;
+  inputFocus: boolean;
   label?: string;
-  placeholder?: string;
-  type?: "number" | "text" | "password" | "email" | "search";
-  required: boolean;
   helperText: string;
   error: boolean;
-  disabled?: boolean;
-  iconClickCallBack?: (value: any) => void;
-  onChange?: React.ChangeEventHandler<HTMLInputElement>;
-  startIcon?: string;
-  endIcon?: string;
-  iconVariant?: "contained" | "outlined";
-  className?: string;
-  passwordStrengthCheck?: boolean;
   thousandSeparate?: boolean;
   haveKeyboard?: boolean;
   numericKeyboard?: boolean;
+  iconClickCallBack?: (value: any) => void;
   multiLangKeyboard?: boolean;
   children: ReactNode;
+  iconVariant?: "contained" | "outlined";
   setInputValue: Dispatch<SetStateAction<string>>;
-  inputValue: string;
-  inputFocus: boolean;
+  startIcon?: string;
+  endIcon?: string;
+  disabled?: boolean;
+  onChange?: React.ChangeEventHandler<HTMLInputElement>;
+  className?: string;
+  placeholder?: string;
+  required: boolean;
 };
 
 export type TGeneralInputType = {
   thousandSeparate?: boolean;
-  maxLength?: number;
   rhfRegister?: {
     onChange: ChangeHandler;
     onBlur: ChangeHandler;
     name: string;
     ref: React.Ref<any>;
   };
-  placeholder?: string;
-  handleBlur?: React.FocusEventHandler<HTMLInputElement>;
-  disabled?: boolean;
-  ltr?: boolean;
   iconClickCallBack?: (value: any) => void;
-  onChange?: React.ChangeEventHandler<HTMLInputElement>;
-  name: string;
-};
+  defaultValue?: string;
+} & HTMLInputType;
 
 export type TBaseInput = {
   type?: "number" | "text" | "password" | "search";
@@ -52,11 +51,10 @@ export type TBaseInput = {
 } & TGeneralInputType;
 
 export type TInputBaseType = {
-  required?: boolean;
+  labelClassName?: string;
+  inputClassName?: string;
   haveKeyboard?: boolean;
   numericKeyboard?: boolean;
-  defaultValue?: string;
-  className?: string;
   label?: string;
   helperText?: string;
   error?: boolean;
@@ -64,19 +62,16 @@ export type TInputBaseType = {
 } & TGeneralInputType;
 
 export type TBaseTextInput = {
-  handleChange?: (e: ChangeEvent<HTMLInputElement>) => void;
   startIcon?: string;
   iconVariant?: "contained" | "outlined";
   type?: "text" | "email" | "search";
 } & TInputBaseType;
 
 export type TPasswordInput = {
-  handleChange?: (input: string) => void;
   passwordStrengthCheck?: boolean;
 } & TInputBaseType;
 
 export type TBaseNumberInput = {
-  thousandSeparate?:boolean;
-  handleChange?: (input: string) => void;
+  thousandSeparate?: boolean;
   iconVariant?: "contained" | "outlined";
 } & TInputBaseType;

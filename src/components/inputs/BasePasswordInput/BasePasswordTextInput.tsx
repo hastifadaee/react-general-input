@@ -4,27 +4,26 @@ import clsx from "clsx";
 import BaseInput from "../BaseInput/BaseInput";
 import { passwordStrength } from "check-password-strength";
 import TextInputWrapper from "../TextInputWrapper/TextInputWrapper";
-import * as React from "react";
 
 const BasePasswordInput = ({
   rhfRegister,
-  handleChange,
   haveKeyboard,
   defaultValue,
-  maxLength,
   placeholder,
-  handleBlur,
+  onChange,
   disabled,
-  ltr = true,
-  name,
   iconClickCallBack,
   endIcon,
   className,
   label,
   passwordStrengthCheck,
   helperText = "",
-  error= false,
+  error = false,
   required = false,
+  inputClassName,
+  labelClassName,
+  name,
+  ...props
 }: TPasswordInput) => {
   const [inputFocus, setInputFocus] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
@@ -41,13 +40,13 @@ const BasePasswordInput = ({
   };
   return (
     <TextInputWrapper
+      inputClassName={inputClassName}
+      labelClassName={labelClassName}
       required={required}
       error={error}
-      passwordStrengthCheck={true}
       haveKeyboard
       inputValue={inputValue}
       setInputValue={setInputValue}
-      type="password"
       className={className}
       label={label}
       helperText={helperText}
@@ -66,23 +65,24 @@ const BasePasswordInput = ({
         </p>
       )}
       <BaseInput
+        {...props}
         type={showPassword ? "text" : "password"}
         onChange={(e) => {
           rhfRegister?.onChange(e);
           setInputValue(passwordCharChecker(e));
-          handleChange?.(passwordCharChecker(e));
+          onChange?.({
+            ...e,
+            target: { ...e.target, value: passwordCharChecker(e) },
+          });
           rhfRegister?.onChange(e);
         }}
         inputValue={inputValue}
-        maxLength={maxLength}
         rhfRegister={rhfRegister}
-        placeholder={placeholder}
-        handleBlur={handleBlur}
-        disabled={disabled}
-        ltr={ltr}
-        name={name}
         iconClickCallBack={iconClickCallBack}
         setInputFocus={setInputFocus}
+        required={required}
+        name={name}
+        placeholder={placeholder}
       />
       <span
         onClick={() => setShowPassword(!showPassword)}

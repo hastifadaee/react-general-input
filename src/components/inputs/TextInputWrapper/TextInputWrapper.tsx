@@ -3,9 +3,9 @@ import clsx from "clsx";
 import React, { forwardRef, useEffect, useState } from "react";
 import "react-simple-keyboard/build/css/index.css";
 import { TTextInputWrapper } from "../types/TextInputTypes";
-import { addCommas } from "../../../utils/addCommas";
-import { removeNonNumeric } from "../../../utils/removeNonNumeric";
 import VirtualKeyboard from "../../VirtualKeyboard/VirtaulKeyboard";
+import { removeNonNumeric } from "@/utils/removeNonNumeric";
+import { addCommas } from "@/utils/addCommas";
 
 const TextInputWrapper = forwardRef(
   (
@@ -13,7 +13,6 @@ const TextInputWrapper = forwardRef(
       defaultValue = "",
       label,
       placeholder,
-      type,
       required = false,
       helperText,
       error = false,
@@ -23,7 +22,6 @@ const TextInputWrapper = forwardRef(
       endIcon,
       iconVariant,
       className,
-      passwordStrengthCheck,
       haveKeyboard = false,
       numericKeyboard = false,
       multiLangKeyboard = false,
@@ -31,7 +29,9 @@ const TextInputWrapper = forwardRef(
       setInputValue,
       inputValue,
       inputFocus,
-      thousandSeparate
+      thousandSeparate,
+      labelClassName = "",
+      inputClassName = "",
     }: TTextInputWrapper,
     ref: any
   ) => {
@@ -40,7 +40,9 @@ const TextInputWrapper = forwardRef(
     const [isFirst, setIsFirst] = useState(isKeyboardShow);
     useEffect(() => {
       setInputValue?.(
-        thousandSeparate ? addCommas(removeNonNumeric(defaultValue)) : defaultValue
+        thousandSeparate
+          ? addCommas(removeNonNumeric(defaultValue))
+          : defaultValue
       );
     }, [defaultValue]);
     useEffect(() => {
@@ -62,7 +64,8 @@ const TextInputWrapper = forwardRef(
                     inputValue || inputFocus || !placeholder
                       ? "opacity-100"
                       : " translate-y-8 -translate-x-1  opacity-0 pointer-events-none",
-                    "!text-neutral-2  transition-all relative text-[10px] sm:text-xs md:text-sm"
+                    "!text-neutral-2  transition-all relative text-[10px] sm:text-xs md:text-sm",
+                    labelClassName
                   )}
                 >
                   {label}
@@ -77,6 +80,7 @@ const TextInputWrapper = forwardRef(
                 ? "shadow-[0px_0px_8px_0px_rgba(221,19,0,0.26)]"
                 : "shadow-[0px_0px_8px_0px_rgba(50,49,118,0.16)]",
               "transition-transform  w-full px-4 py-2 h-[34px] sm:h-12 rounded-2xl flex items-center justify-between bg-white relative",
+              inputClassName,
               !disabled &&
                 !error &&
                 "hover:shadow-[0px_0px_8px_0px_rgba(50,49,118,0.16),0px_4px_4px_0px_rgba(50,49,118,0.16)] transition-shadow ",

@@ -2,21 +2,21 @@ import BaseInput from "../BaseInput/BaseInput";
 import { TBaseNumberInput } from "../types/TextInputTypes";
 import { useEffect, useState } from "react";
 import TextInputWrapper from "../TextInputWrapper/TextInputWrapper";
-import * as React from "react";
-import { addCommas } from "../../../utils/addCommas";
-import { thousandSeparator } from "../../../utils/thousandSeparator";
+import { addCommas } from "@/utils/addCommas";
+import { removeNonNumeric } from "@/utils/removeNonNumeric";
+import { thousandSeparator } from "@/utils/thousandSeparator";
+
+
 
 const BaseNumberInput = ({
   rhfRegister,
-  handleChange,
+  onChange,
   haveKeyboard,
   numericKeyboard,
   defaultValue,
-  maxLength,
   placeholder,
-  handleBlur,
   disabled,
-  ltr,
+  dir,
   name,
   iconClickCallBack,
   className,
@@ -26,6 +26,9 @@ const BaseNumberInput = ({
   required = false,
   iconVariant,
   thousandSeparate = true,
+  labelClassName,
+  inputClassName,
+  ...props
 }: TBaseNumberInput) => {
   const [inputFocus, setInputFocus] = useState(false);
   const [inputValue, setInputValue] = useState(
@@ -38,6 +41,8 @@ const BaseNumberInput = ({
   }, [defaultValue]);
   return (
     <TextInputWrapper
+      inputClassName={inputClassName}
+      labelClassName={labelClassName}
       iconVariant={iconVariant}
       required={required}
       error={error}
@@ -46,7 +51,6 @@ const BaseNumberInput = ({
       haveKeyboard={haveKeyboard}
       inputValue={inputValue}
       setInputValue={setInputValue}
-      type={thousandSeparate ? "text" : "number"}
       className={className}
       helperText={helperText}
       disabled={disabled}
@@ -54,24 +58,22 @@ const BaseNumberInput = ({
       placeholder={placeholder}
     >
       <BaseInput
+        {...props}
         type={thousandSeparate ? "text" : "number"}
         inputValue={inputValue}
         onChange={(e) => {
           const rawValue = removeNonNumeric(e.target.value);
           const formattedValue = thousandSeparate
             ? thousandSeparator(e)
-            : rawValue; 
-          setInputValue(formattedValue); 
-          rhfRegister?.onChange({ target: { name, value: rawValue } }); 
-          handleChange?.(rawValue);
+            : rawValue;
+          setInputValue(formattedValue);
+          rhfRegister?.onChange({ target: { name, value: rawValue } });
+          onChange?.({ ...e, target: { ...e.target, value: rawValue } });
         }}
         thousandSeparate={thousandSeparate}
-        maxLength={maxLength}
         rhfRegister={rhfRegister}
         placeholder={placeholder}
-        handleBlur={handleBlur}
         disabled={disabled}
-        ltr={ltr}
         name={name}
         iconClickCallBack={iconClickCallBack}
         setInputFocus={setInputFocus}
@@ -80,7 +82,3 @@ const BaseNumberInput = ({
   );
 };
 export default BaseNumberInput;
-function removeNonNumeric(arg0: string): string {
-  throw new Error("Function not implemented.");
-}
-
