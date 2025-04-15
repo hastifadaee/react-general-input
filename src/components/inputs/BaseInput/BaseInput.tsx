@@ -16,7 +16,6 @@ const BaseInput = ({
   inputValue,
   setInputFocus,
   thousandSeparate,
-  
   ...props
 }: TBaseInput) => {
   return (
@@ -25,7 +24,7 @@ const BaseInput = ({
       name={rhfRegister?.name ?? name}
       ref={rhfRegister?.ref}
       value={inputValue}
-      type={type === "number" ? "text" : type}
+      type={type}
       onFocus={() => {
         setInputFocus(true);
       }}

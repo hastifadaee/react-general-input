@@ -1,56 +1,35 @@
-import { Menu, MenuHandler } from "@material-tailwind/react";
+import { Menu, MenuHandler, MenuList } from "@material-tailwind/react";
 import Keyboard from "react-simple-keyboard";
+import BaseSelectBox from "../BaseSelectBox/BaseSelectBox";
 import { Dispatch, SetStateAction, useEffect, useRef, useState } from "react";
 import "simple-keyboard/build/css/index.css";
-import {reverseString} from '../../utils/reverseString';
-type TKeyboard = { default: string[]; shift: string[] };
+import { reverseString } from "@/utils/reverseString";
+import { english, farsi, numeric } from "./keyboardLayouts";
 
+type TKeyboard = { default: string[]; shift: string[] };
+type Props = {
+  isKeyboardShow: boolean;
+  setIsKeyboardShow: Dispatch<SetStateAction<boolean>>;
+  keyboardOnChange: (arg1: string, arg2?: MouseEvent) => void;
+  isNumeric?: boolean;
+  multiLang?: boolean;
+  handleBackSpace: () => void;
+};
 const VirtualKeyboard = ({
   isKeyboardShow,
   setIsKeyboardShow,
   keyboardOnChange,
   isNumeric = false,
   multiLang = false,
-}: {
-  isKeyboardShow: boolean;
-  setIsKeyboardShow: Dispatch<SetStateAction<boolean>>;
-  keyboardOnChange: (arg: string) => void;
-  isNumeric?: boolean;
-  multiLang?: boolean;
-}) => {
-  const keyboard = useRef(null);
-  const farsi = {
-    default: [
-      "` \u06f1 \u06f2 \u06f3 \u06f4 \u06f5 \u06f6 \u06f7 \u06f8 \u06f9 \u06f0 - = {bksp}",
-      "{tab} \u0636 \u0635 \u062b \u0642 \u0641 \u063a \u0639 \u0647 \u062e \u062d \u062c \u0686 \\",
-      "{lock} \u0634 \u0633 \u06cc \u0628 \u0644 \u0627 \u062a \u0646 \u0645 \u06a9 \u06af {enter}",
-      "{shift} \u0638 \u0637 \u0632 \u0631 \u0630 \u062f \u067e \u0648 \u002e \u002f {shift}",
-      ".com @ {space}",
-    ],
-    shift: [
-      "\u00f7 \u0021 \u066c \u066b \ufdfc \u066a \u00d7 \u06f7 \u002a \u0029 \u0028 \u0640 \u002b {bksp}",
-      "{tab} \u0652 \u064c \u064d \u064b \u064f \u0650 \u064e \u0651 \u005d \u005b \u007d \u007b",
-      "{lock} \u0624 \u0626 \u064a \u0625 \u0623 \u0622 \u0629 \u00bb \u00ab \u003a \u061b {enter}",
-      "{shift} \u0643 \u0653 \u0698 \u0670 \u200c \u0654 \u0621 \u003c \u003e \u061f {shift}",
-      ".com @ {space}",
-    ],
-  };
-  const english = {
-    default: [
-      "` 1 2 3 4 5 6 7 8 9 0 - = {bksp}",
-      "{tab} q w e r t y u i o p [ ] \\",
-      "{lock} a s d f g h j k l ; ' {enter}",
-      "{shift} z x c v b n m , . / {shift}",
-      ".com @ {space}",
-    ],
-    shift: [
-      "~ ! @ # $ % ^ & * ( ) _ + {bksp}",
-      "{tab} Q W E R T Y U I O P { } |",
-      '{lock} A S D F G H J K L : " {enter}',
-      "{shift} Z X C V B N M < > ? {shift}",
-      ".com @ {space}",
-    ],
-  };
+  handleBackSpace,
+}: Props) => {
+  const layoutName = { english, farsi };
+  const keyboard = useRef();
+  const [layout, setLayout] = useState("default");
+  const [langLayout, setLangLayout] = useState<{
+    default: string[];
+    shift: string[];
+  }>(english);
   const reverseKeyboard = (keyboard: TKeyboard): TKeyboard => {
     const defaultKey = keyboard.default.map((line) => {
       return reverseString(line);
@@ -60,19 +39,10 @@ const VirtualKeyboard = ({
     });
     return { default: defaultKey, shift: shiftKey };
   };
-  const numeric = {
-    default: ["1 2 3", "4 5 6", "7 8 9", "{shift} 0 _", "{bksp}"],
-    shift: ["! / #", "$ % ^", "& * (", "{shift} ) +", "{bksp}"],
-  };
-  const [langLayout, setLangLayout] = useState<{
-    default: string[];
-    shift: string[];
-  }>(english);
-  const layoutName = { english, farsi };
   const onKeyPress = (button: any) => {
     if (button === "{shift}" || button === "{lock}") handleShift();
+    if (button === "{bksp}") handleBackSpace();
   };
-  const [layout, setLayout] = useState("default");
   const handleShift = () => {
     const newLayoutName = layout === "default" ? "shift" : "default";
     setLayout(newLayoutName);
@@ -87,11 +57,11 @@ const VirtualKeyboard = ({
         <span
           onClick={() => setIsKeyboardShow((prev) => !prev)}
           className={
-            "icon-Keyboard mr-1 !text-xl cursor-pointer text-primary-6"
+            "icon-Keyboard mr-1 !text-xl cursor-pointer text-primary-5"
           }
         />
       </MenuHandler>
-      <menu className="w-full sm:w-fit">
+      <MenuList className="w-full sm:w-fit z-[9999]">
         <Keyboard
           theme={
             isNumeric
@@ -104,7 +74,7 @@ const VirtualKeyboard = ({
           onChange={keyboardOnChange}
           onKeyPress={onKeyPress}
         />
-        {/* {!isNumeric && multiLang && (
+        {!isNumeric && multiLang && (
           <BaseSelectBox
             defaultValue={"english"}
             handleChange={(value) => {
@@ -115,8 +85,8 @@ const VirtualKeyboard = ({
               { label: "فارسی", value: "farsi" },
             ]}
           />
-        )} */}
-      </menu>
+        )}
+      </MenuList>
     </Menu>
   );
 };

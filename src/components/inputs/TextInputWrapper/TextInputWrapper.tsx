@@ -2,10 +2,10 @@
 import clsx from "clsx";
 import React, { forwardRef, useEffect, useState } from "react";
 import "react-simple-keyboard/build/css/index.css";
-import { TTextInputWrapper } from "../types/TextInputTypes";
-import VirtualKeyboard from "../../VirtualKeyboard/VirtaulKeyboard";
-import { removeNonNumeric } from "@/utils/removeNonNumeric";
 import { addCommas } from "@/utils/addCommas";
+import { removeNonNumeric } from "@/utils/removeNonNumeric";
+import VirtualKeyboard from "@/components/VirtualKeyboard/VirtaulKeyboard";
+import { TTextInputWrapper } from "../types/TextInputTypes";
 
 const TextInputWrapper = forwardRef(
   (
@@ -32,12 +32,41 @@ const TextInputWrapper = forwardRef(
       thousandSeparate,
       labelClassName = "",
       inputClassName = "",
+      setValue,
+      rhfOptions,
+      rhfRegister,
+      clearErrors,
     }: TTextInputWrapper,
     ref: any
   ) => {
     const [isKeyboardShow, setIsKeyboardShow] = useState(false);
     const [cachedValue, setCachedValue] = useState(inputValue);
     const [isFirst, setIsFirst] = useState(isKeyboardShow);
+    const inputSetter = (input: string) => {
+      const validated =  rhfOptions?.validate as { isValid: (input: string) => boolean }
+      setInputValue(input);
+      rhfRegister?.name && setValue?.(rhfRegister?.name, input);
+      rhfOptions?.hasOwnProperty("validate")
+        ? rhfOptions.validate?.hasOwnProperty("isValid")
+          ? typeof validated?.isValid(input) !== "string" &&
+            clearErrors?.(rhfRegister?.name)
+          : typeof rhfOptions?.validate !== "string" &&
+            clearErrors?.(rhfRegister?.name)
+        : rhfOptions?.required &&
+          input.length &&
+          clearErrors?.(rhfRegister?.name);
+    };
+    const keyboardOnChange = (input: string) => {
+      const newInput = cachedValue + input;
+      inputSetter(newInput);
+      setIsFirst(false);
+    };
+    const handleBackSpace = () => {
+      if (inputValue.length) {
+        const newInput = inputValue.substring(0, inputValue.length - 1);
+        inputSetter(newInput);
+      }
+    };
     useEffect(() => {
       setInputValue?.(
         thousandSeparate
@@ -51,6 +80,9 @@ const TextInputWrapper = forwardRef(
     useEffect(() => {
       setIsFirst((prev) => !prev);
     }, [isKeyboardShow]);
+    useEffect(() => {
+      rhfRegister?.name && setValue?.(rhfRegister?.name, inputValue);
+    }, [inputValue]);
     return (
       <div className={className}>
         <div
@@ -114,12 +146,10 @@ const TextInputWrapper = forwardRef(
             )}
             {haveKeyboard && (
               <VirtualKeyboard
+                handleBackSpace={handleBackSpace}
                 multiLang={multiLangKeyboard}
                 isNumeric={numericKeyboard}
-                keyboardOnChange={(input: string) => {
-                  setIsFirst(false);
-                  setInputValue(cachedValue + input);
-                }}
+                keyboardOnChange={keyboardOnChange}
                 isKeyboardShow={isKeyboardShow}
                 setIsKeyboardShow={setIsKeyboardShow}
               />

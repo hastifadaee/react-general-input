@@ -1,77 +1,90 @@
-import { ChangeEvent, Dispatch, ReactNode, SetStateAction } from "react";
-import { ChangeHandler } from "react-hook-form";
+import {
+  Dispatch,
+  InputHTMLAttributes,
+  ReactNode,
+  SetStateAction,
+} from "react";
+import {
+  ChangeHandler,
+  FieldError,
+  FieldErrorsImpl,
+  FieldValues,
+  Merge,
+  RegisterOptions,
+  UseFormClearErrors,
+  UseFormSetValue,
+} from "react-hook-form";
 
 export type HTMLInputType = Omit<
-  React.InputHTMLAttributes<HTMLInputElement>,
-  "value" | "type" | "defaultValue"
+  InputHTMLAttributes<HTMLInputElement>,
+  "value" | "type" | "defaultValue" | "autoComplete"
 >;
-
-export type TTextInputWrapper = {
-  labelClassName?: string;
-  inputClassName?: string;
-  defaultValue?: string;
-  inputValue: string;
-  inputFocus: boolean;
-  label?: string;
-  helperText: string;
-  error: boolean;
-  thousandSeparate?: boolean;
-  haveKeyboard?: boolean;
-  numericKeyboard?: boolean;
-  iconClickCallBack?: (value: any) => void;
-  multiLangKeyboard?: boolean;
-  children: ReactNode;
-  iconVariant?: "contained" | "outlined";
-  setInputValue: Dispatch<SetStateAction<string>>;
-  startIcon?: string;
-  endIcon?: string;
-  disabled?: boolean;
-  onChange?: React.ChangeEventHandler<HTMLInputElement>;
-  className?: string;
-  placeholder?: string;
-  required: boolean;
+export type RHFRegister = {
+  onChange: ChangeHandler;
+  onBlur: ChangeHandler;
+  name: string;
+  ref: React.Ref<HTMLInputElement>;
 };
-
 export type TGeneralInputType = {
-  thousandSeparate?: boolean;
-  rhfRegister?: {
-    onChange: ChangeHandler;
-    onBlur: ChangeHandler;
-    name: string;
-    ref: React.Ref<any>;
-  };
+  rhfRegister?: RHFRegister;
   iconClickCallBack?: (value: any) => void;
   defaultValue?: string;
 } & HTMLInputType;
 
 export type TBaseInput = {
-  type?: "number" | "text" | "password" | "search";
+  type?: "number" | "text" | "password" | "email" | "search";
   inputValue: string;
+  thousandSeparate?: boolean;
   setInputFocus: Dispatch<SetStateAction<boolean>>;
 } & TGeneralInputType;
 
-export type TInputBaseType = {
+export type ErrorText =
+  | string
+  | FieldError
+  | Merge<FieldError, FieldErrorsImpl<any>>;
+
+export type TInputBaseType<TFieldValues extends FieldValues = FieldValues> = {
   labelClassName?: string;
   inputClassName?: string;
+  helperText?: ErrorText;
+  error?: boolean;
   haveKeyboard?: boolean;
   numericKeyboard?: boolean;
   label?: string;
-  helperText?: string;
-  error?: boolean;
   endIcon?: string;
+  clearErrors?: UseFormClearErrors<TFieldValues>;
+  multiLangKeyboard?: boolean;
+  rhfOptions?: RegisterOptions<TFieldValues>;
+  ref?: any;
+  setValue?: UseFormSetValue<TFieldValues>;
+  startIcon?: string;
 } & TGeneralInputType;
 
-export type TBaseTextInput = {
+export type TTextInputWrapper<TFieldValues extends FieldValues = FieldValues> = {
+  defaultValue?: string;
+  inputFocus: boolean;
+  disabled?: boolean;
+  className?: string;
+  placeholder?: string;
+  required: boolean;
+  thousandSeparate?: boolean;
+  setInputValue: Dispatch<SetStateAction<string>>;
+  inputValue: string;
+  iconVariant?: "contained" | "outlined";
+  children: ReactNode;
+} & Omit<TInputBaseType<TFieldValues>, keyof HTMLInputType>;
+
+export type TBaseTextInput<TFieldValues extends FieldValues = FieldValues> = {
   startIcon?: string;
   iconVariant?: "contained" | "outlined";
   type?: "text" | "email" | "search";
-} & TInputBaseType;
+} & TInputBaseType<TFieldValues>;
 
-export type TPasswordInput = {
+export type TPasswordInput<TFieldValues extends FieldValues = FieldValues> = {
   passwordStrengthCheck?: boolean;
-} & TInputBaseType;
+} & TInputBaseType<TFieldValues>;
 
-export type TBaseNumberInput = {
+export type TBaseNumberInput<TFieldValues extends FieldValues = FieldValues> = {
   thousandSeparate?: boolean;
   iconVariant?: "contained" | "outlined";
-} & TInputBaseType;
+} & TInputBaseType<TFieldValues>;

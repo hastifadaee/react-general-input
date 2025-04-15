@@ -23,6 +23,12 @@ const BasePasswordInput = ({
   inputClassName,
   labelClassName,
   name,
+  clearErrors,
+  setValue,
+  multiLangKeyboard,
+  rhfOptions,
+  ref,
+  startIcon,
   ...props
 }: TPasswordInput) => {
   const [inputFocus, setInputFocus] = useState(false);
@@ -53,6 +59,16 @@ const BasePasswordInput = ({
       disabled={disabled}
       inputFocus={inputFocus}
       placeholder={placeholder}
+      clearErrors={clearErrors}
+      defaultValue={defaultValue}
+      endIcon={endIcon}
+      iconClickCallBack={iconClickCallBack}
+      multiLangKeyboard={multiLangKeyboard}
+      rhfOptions={rhfOptions}
+      rhfRegister={rhfRegister}
+      ref={ref}
+      setValue={setValue}
+      startIcon={startIcon}
     >
       {inputValue && passwordStrengthCheck && (
         <p

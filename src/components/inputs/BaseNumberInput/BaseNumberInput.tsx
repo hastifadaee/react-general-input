@@ -6,8 +6,6 @@ import { addCommas } from "@/utils/addCommas";
 import { removeNonNumeric } from "@/utils/removeNonNumeric";
 import { thousandSeparator } from "@/utils/thousandSeparator";
 
-
-
 const BaseNumberInput = ({
   rhfRegister,
   onChange,
@@ -28,6 +26,14 @@ const BaseNumberInput = ({
   thousandSeparate = true,
   labelClassName,
   inputClassName,
+  clearErrors,
+  endIcon,
+  multiLangKeyboard,
+  rhfOptions,
+  ref,
+  setValue,
+  startIcon,
+  
   ...props
 }: TBaseNumberInput) => {
   const [inputFocus, setInputFocus] = useState(false);
@@ -56,6 +62,17 @@ const BaseNumberInput = ({
       disabled={disabled}
       inputFocus={inputFocus}
       placeholder={placeholder}
+      clearErrors={clearErrors}
+      defaultValue={defaultValue}
+      endIcon={endIcon}
+      iconClickCallBack={iconClickCallBack}
+      multiLangKeyboard={multiLangKeyboard}
+      rhfOptions={rhfOptions}
+      rhfRegister={rhfRegister}
+      ref={ref}
+      setValue={setValue}
+      startIcon={startIcon}
+      thousandSeparate={thousandSeparate}
     >
       <BaseInput
         {...props}
