@@ -1,6 +1,6 @@
 import { Menu, MenuHandler, MenuList } from "@material-tailwind/react";
 import Keyboard from "react-simple-keyboard";
-import BaseSelectBox from "../BaseSelectBox/BaseSelectBox";
+// import BaseSelectBox from "../BaseSelectBox/BaseSelectBox";
 import { Dispatch, SetStateAction, useEffect, useRef, useState } from "react";
 import "simple-keyboard/build/css/index.css";
 import { reverseString } from "@/utils/reverseString";
@@ -24,7 +24,7 @@ const VirtualKeyboard = ({
   handleBackSpace,
 }: Props) => {
   const layoutName = { english, farsi };
-  const keyboard = useRef();
+  const keyboard = useRef(null);
   const [layout, setLayout] = useState("default");
   const [langLayout, setLangLayout] = useState<{
     default: string[];
@@ -61,7 +61,7 @@ const VirtualKeyboard = ({
           }
         />
       </MenuHandler>
-      <MenuList className="w-full sm:w-fit z-[9999]">
+      <menu className="w-full sm:w-fit z-[9999]">
         <Keyboard
           theme={
             isNumeric
@@ -74,7 +74,7 @@ const VirtualKeyboard = ({
           onChange={keyboardOnChange}
           onKeyPress={onKeyPress}
         />
-        {!isNumeric && multiLang && (
+        {/* {!isNumeric && multiLang && (
           <BaseSelectBox
             defaultValue={"english"}
             handleChange={(value) => {
@@ -85,8 +85,8 @@ const VirtualKeyboard = ({
               { label: "فارسی", value: "farsi" },
             ]}
           />
-        )}
-      </MenuList>
+        )} */}
+      </menu>
     </Menu>
   );
 };
