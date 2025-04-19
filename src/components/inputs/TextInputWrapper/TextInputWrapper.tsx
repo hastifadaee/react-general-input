@@ -33,33 +33,18 @@ const TextInputWrapper = forwardRef(
       labelClassName = "",
       inputClassName = "",
       setValue,
-      rhfOptions,
       rhfRegister,
-      clearErrors,
     }: TTextInputWrapper,
     ref: any
   ) => {
     const [isKeyboardShow, setIsKeyboardShow] = useState(false);
-    const [cachedValue, setCachedValue] = useState(inputValue);
-    const [isFirst, setIsFirst] = useState(isKeyboardShow);
     const inputSetter = (input: string) => {
-      const validated =  rhfOptions?.validate as { isValid: (input: string) => boolean }
       setInputValue(input);
-      rhfRegister?.name && setValue?.(rhfRegister?.name, input);
-      rhfOptions?.hasOwnProperty("validate")
-        ? rhfOptions.validate?.hasOwnProperty("isValid")
-          ? typeof validated?.isValid(input) !== "string" &&
-            clearErrors?.(rhfRegister?.name)
-          : typeof rhfOptions?.validate !== "string" &&
-            clearErrors?.(rhfRegister?.name)
-        : rhfOptions?.required &&
-          input.length &&
-          clearErrors?.(rhfRegister?.name);
+      rhfRegister?.name &&
+        setValue?.(rhfRegister?.name, input, { shouldValidate: true });
     };
     const keyboardOnChange = (input: string) => {
-      const newInput = cachedValue + input;
-      inputSetter(newInput);
-      setIsFirst(false);
+      inputSetter(inputValue.concat(input));
     };
     const handleBackSpace = () => {
       if (inputValue.length) {
@@ -74,12 +59,6 @@ const TextInputWrapper = forwardRef(
           : defaultValue
       );
     }, [defaultValue]);
-    useEffect(() => {
-      if (isFirst) setCachedValue(inputValue);
-    }, [isFirst, inputValue]);
-    useEffect(() => {
-      setIsFirst((prev) => !prev);
-    }, [isKeyboardShow]);
     useEffect(() => {
       rhfRegister?.name && setValue?.(rhfRegister?.name, inputValue);
     }, [inputValue]);
@@ -111,7 +90,7 @@ const TextInputWrapper = forwardRef(
               error
                 ? "shadow-[0px_0px_8px_0px_rgba(221,19,0,0.26)]"
                 : "shadow-[0px_0px_8px_0px_rgba(50,49,118,0.16)]",
-              "transition-transform  w-full px-4 py-2 h-[34px] sm:h-12 rounded-2xl flex items-center justify-between bg-white relative",
+              "transition-transform  w-full px-4 py-2 h-[34px] sm:h-12 rounded flex items-center justify-between bg-white relative",
               inputClassName,
               !disabled &&
                 !error &&

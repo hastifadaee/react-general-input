@@ -8,10 +8,7 @@ import {
   ChangeHandler,
   FieldError,
   FieldErrorsImpl,
-  FieldValues,
   Merge,
-  RegisterOptions,
-  UseFormClearErrors,
   UseFormSetValue,
 } from "react-hook-form";
 
@@ -43,7 +40,7 @@ export type ErrorText =
   | FieldError
   | Merge<FieldError, FieldErrorsImpl<any>>;
 
-export type TInputBaseType<TFieldValues extends FieldValues = FieldValues> = {
+export type TInputBaseType = {
   labelClassName?: string;
   inputClassName?: string;
   helperText?: ErrorText;
@@ -52,15 +49,13 @@ export type TInputBaseType<TFieldValues extends FieldValues = FieldValues> = {
   numericKeyboard?: boolean;
   label?: string;
   endIcon?: string;
-  clearErrors?: UseFormClearErrors<TFieldValues>;
   multiLangKeyboard?: boolean;
-  rhfOptions?: RegisterOptions<TFieldValues>;
   ref?: any;
-  setValue?: UseFormSetValue<TFieldValues>;
+  setValue?: UseFormSetValue<any>;
   startIcon?: string;
 } & TGeneralInputType;
 
-export type TTextInputWrapper<TFieldValues extends FieldValues = FieldValues> = {
+export type TTextInputWrapper = {
   defaultValue?: string;
   inputFocus: boolean;
   disabled?: boolean;
@@ -72,19 +67,19 @@ export type TTextInputWrapper<TFieldValues extends FieldValues = FieldValues> = 
   inputValue: string;
   iconVariant?: "contained" | "outlined";
   children: ReactNode;
-} & Omit<TInputBaseType<TFieldValues>, keyof HTMLInputType>;
+} & Omit<TInputBaseType, keyof HTMLInputType>;
 
-export type TBaseTextInput<TFieldValues extends FieldValues = FieldValues> = {
+export type TBaseTextInput = {
   startIcon?: string;
   iconVariant?: "contained" | "outlined";
   type?: "text" | "email" | "search";
-} & TInputBaseType<TFieldValues>;
+} & TInputBaseType;
 
-export type TPasswordInput<TFieldValues extends FieldValues = FieldValues> = {
+export type TPasswordInput = {
   passwordStrengthCheck?: boolean;
-} & TInputBaseType<TFieldValues>;
+} & TInputBaseType;
 
-export type TBaseNumberInput<TFieldValues extends FieldValues = FieldValues> = {
+export type TBaseNumberInput = {
   thousandSeparate?: boolean;
   iconVariant?: "contained" | "outlined";
-} & TInputBaseType<TFieldValues>;
+} & TInputBaseType;

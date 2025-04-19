@@ -24,7 +24,7 @@ const BaseInput = ({
       name={rhfRegister?.name ?? name}
       ref={rhfRegister?.ref}
       value={inputValue}
-      type={type}
+      type={type === "number" ? "text" : type}
       onFocus={() => {
         setInputFocus(true);
       }}
@@ -45,6 +45,7 @@ const BaseInput = ({
         dir === "ltr" && "text-left placeholder:text-right"
       )}
       {...props}
+      required={false}
     />
   );
 };

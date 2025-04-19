@@ -1,6 +1,5 @@
-import { Menu, MenuHandler, MenuList } from "@material-tailwind/react";
+import { Menu, MenuHandler } from "@material-tailwind/react";
 import Keyboard from "react-simple-keyboard";
-// import BaseSelectBox from "../BaseSelectBox/BaseSelectBox";
 import { Dispatch, SetStateAction, useEffect, useRef, useState } from "react";
 import "simple-keyboard/build/css/index.css";
 import { reverseString } from "@/utils/reverseString";
@@ -42,6 +41,7 @@ const VirtualKeyboard = ({
   const onKeyPress = (button: any) => {
     if (button === "{shift}" || button === "{lock}") handleShift();
     if (button === "{bksp}") handleBackSpace();
+    else keyboardOnChange(button);
   };
   const handleShift = () => {
     const newLayoutName = layout === "default" ? "shift" : "default";
@@ -71,7 +71,7 @@ const VirtualKeyboard = ({
           layoutName={layout}
           layout={reverseKeyboard(langLayout)}
           keyboardRef={(r) => (keyboard.current = r)}
-          onChange={keyboardOnChange}
+          // onChange={keyboardOnChange}
           onKeyPress={onKeyPress}
         />
         {/* {!isNumeric && multiLang && (

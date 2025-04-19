@@ -27,9 +27,7 @@ const BaseTextInput = ({
   iconVariant,
   inputClassName,
   labelClassName,
-  clearErrors,
   multiLangKeyboard,
-  rhfOptions,
   ref,
   setValue,
   ...props
@@ -59,10 +57,8 @@ const BaseTextInput = ({
       endIcon={endIcon}
       iconClickCallBack={iconClickCallBack}
       iconVariant={iconVariant}
-      clearErrors={clearErrors}
       defaultValue={defaultValue}
       multiLangKeyboard={multiLangKeyboard}
-      rhfOptions={rhfOptions}
       rhfRegister={rhfRegister}
       ref={ref}
       setValue={setValue}
