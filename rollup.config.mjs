@@ -4,22 +4,23 @@ import typescript from "@rollup/plugin-typescript";
 import dts from "rollup-plugin-dts";
 import terser from "@rollup/plugin-terser";
 import peerDepsExternal from "rollup-plugin-peer-deps-external";
-
 import postcss from "rollup-plugin-postcss";
+import { createRequire } from 'module';
 
-const packageJson = require("./package.json");
+const require = createRequire(import.meta.url);
+const pkg = require('./package.json');
 
 export default [
   {
     input: "src/index.ts",
     output: [
       {
-        file: packageJson.main,
+        file: pkg.main,
         format: "cjs",
         sourcemap: true,
       },
       {
-        file: packageJson.module,
+        file: pkg.module,
         format: "esm",
         sourcemap: true,
       },
@@ -36,8 +37,8 @@ export default [
   },
   {
     input: "src/index.ts",
-    output: [{ file: packageJson.types }],
-    plugins: [dts.default()],
+    output: [{ file: pkg.types, format: "es" }],
+    plugins: [dts()],
     external: [/\.css$/],
   },
 ];
