@@ -4,7 +4,7 @@ import React, { forwardRef, useEffect, useState } from "react";
 import "react-simple-keyboard/build/css/index.css";
 import { addCommas } from "@/utils/addCommas";
 import { removeNonNumeric } from "@/utils/removeNonNumeric";
-import VirtualKeyboard from "@/components/VirtualKeyboard/VirtaulKeyboard";
+import VirtualKeyboard from "@/components/VirtualKeyboard/VirtualKeyboard";
 import { TTextInputWrapper } from "../types/TextInputTypes";
 
 const TextInputWrapper = forwardRef(

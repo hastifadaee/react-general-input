@@ -8,11 +8,13 @@
     "strict": true,
     "noEmit": true,
     "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "forceConsistentCasingInFileNames": true,
     "module": "esnext",
     "moduleResolution": "bundler",
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "jsx": "preserve",
+    "jsx": "react-jsx",
     "noImplicitAny": false,
     "incremental": true,
     "baseUrl": ".", // Root of the project
@@ -20,15 +22,6 @@
       "@/*": ["src/*"] // Alias @ to resolve to src
     }
   },
-  "include": [
-    "next-env.d.ts",
-    "**/*.ts",
-    "**/*.tsx",
-    ".next/types/**/*.ts",
-    "features/userPanel/dashboard/components/DoughnutChart/DoughnutChart.jsx",
-    "app/not-found.tsx",
-    "components/Editor/config.js",
-    "components/Editor/Editor.tsx"
-  ],
+  "include": ["src"],
   "exclude": ["node_modules"]
 }
