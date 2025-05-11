@@ -1,4 +1,3 @@
-"use client";
 import { __assign, __rest } from "tslib";
 import { jsx as _jsx } from "react/jsx-runtime";
 import clsx from "clsx";

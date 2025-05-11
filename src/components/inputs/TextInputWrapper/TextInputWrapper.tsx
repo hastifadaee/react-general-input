@@ -1,4 +1,3 @@
-"use client";
 import clsx from "clsx";
 import React, { forwardRef, useEffect, useState } from "react";
 import "react-simple-keyboard/build/css/index.css";

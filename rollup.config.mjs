@@ -33,7 +33,7 @@ export default [
       terser(),
       postcss(),
     ],
-    external: ["react", "react-dom"],
+    external: (id) => /^react/.test(id),
   },
   {
     input: "src/index.ts",
