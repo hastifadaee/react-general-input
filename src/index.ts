@@ -4,6 +4,7 @@ import BasePasswordInput from "./components/inputs/BasePasswordInput/BasePasswor
 import BaseTextInput from "./components/inputs/BaseTextInput/BaseTextInput";
 import TextInputWrapper from "./components/inputs/TextInputWrapper/TextInputWrapper";
 import VirtualKeyboard from "./components/VirtualKeyboard/VirtualKeyboard";
+import "./tailwind.css";
 
 export {
   BaseInput,
