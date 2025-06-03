@@ -1,4 +1,5 @@
 import {
+  CSSProperties,
   Dispatch,
   InputHTMLAttributes,
   ReactNode,
@@ -41,6 +42,7 @@ export type ErrorText =
   | Merge<FieldError, FieldErrorsImpl<any>>;
 
 export type TInputBaseType = {
+  wrapperStyle?: CSSProperties;
   labelClassName?: string;
   inputClassName?: string;
   helperText?: ErrorText;
@@ -48,11 +50,11 @@ export type TInputBaseType = {
   haveKeyboard?: boolean;
   numericKeyboard?: boolean;
   label?: string;
-  endIcon?: string;
+  endIcon?: string | ReactNode;
   multiLangKeyboard?: boolean;
   ref?: any;
   setValue?: UseFormSetValue<any>;
-  startIcon?: string;
+  startIcon?: string | ReactNode;
 } & TGeneralInputType;
 
 export type TTextInputWrapper = {
@@ -70,7 +72,7 @@ export type TTextInputWrapper = {
 } & Omit<TInputBaseType, keyof HTMLInputType>;
 
 export type TBaseTextInput = {
-  startIcon?: string;
+  startIcon?: string | ReactNode;
   iconVariant?: "contained" | "outlined";
   type?: "text" | "email" | "search";
 } & TInputBaseType;

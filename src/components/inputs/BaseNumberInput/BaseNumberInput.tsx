@@ -31,6 +31,7 @@ const BaseNumberInput = ({
   ref,
   setValue,
   startIcon,
+  wrapperStyle,
   ...props
 }: TBaseNumberInput) => {
   const [inputFocus, setInputFocus] = useState(false);
@@ -45,6 +46,7 @@ const BaseNumberInput = ({
 
   return (
     <TextInputWrapper
+      wrapperStyle={wrapperStyle}
       inputClassName={inputClassName}
       labelClassName={labelClassName}
       iconVariant={iconVariant}

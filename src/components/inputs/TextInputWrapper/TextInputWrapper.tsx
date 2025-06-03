@@ -1,5 +1,5 @@
 import clsx from "clsx";
-import React, { forwardRef, useEffect, useState } from "react";
+import { forwardRef, useEffect, useState } from "react";
 import "react-simple-keyboard/build/css/index.css";
 import { addCommas } from "@/utils/addCommas";
 import { removeNonNumeric } from "@/utils/removeNonNumeric";
@@ -33,6 +33,7 @@ const TextInputWrapper = forwardRef(
       inputClassName = "",
       setValue,
       rhfRegister,
+      wrapperStyle,
     }: TTextInputWrapper,
     ref: any
   ) => {
@@ -62,7 +63,7 @@ const TextInputWrapper = forwardRef(
       rhfRegister?.name && setValue?.(rhfRegister?.name, inputValue);
     }, [inputValue]);
     return (
-      <div className={className}>
+      <div style={wrapperStyle} className={className}>
         <div
           className={"w-full flex justify-between items-start gap-2 flex-col"}
         >
@@ -90,11 +91,11 @@ const TextInputWrapper = forwardRef(
                 ? "shadow-[0px_0px_8px_0px_rgba(221,19,0,0.26)]"
                 : "shadow-[0px_0px_8px_0px_rgba(50,49,118,0.16)]",
               "transition-transform  w-full px-4 py-2 h-[34px] sm:h-12 rounded flex items-center justify-between bg-white relative",
-              inputClassName,
               !disabled &&
                 !error &&
                 "hover:shadow-[0px_0px_8px_0px_rgba(50,49,118,0.16),0px_4px_4px_0px_rgba(50,49,118,0.16)] transition-shadow ",
-              disabled && "!bg-neutral-10"
+              disabled && "!bg-neutral-10",
+              inputClassName
             )}
           >
             {startIcon && (
@@ -105,22 +106,26 @@ const TextInputWrapper = forwardRef(
                   startIcon,
                   iconVariant == "outlined"
                     ? "text-primary-6"
-                    : "w-[18px] h-[18px] md:w-8 md:h-8 text-white rounded-[100%] bg-search"
+                    : "w-[18px] h-[18px] md:w-8 md:h-8 text-white rounded-[100%]"
                 )}
-              />
+              >
+                {typeof startIcon === "string" ? null : startIcon}
+              </span>
             )}
             {children}
             {endIcon && (
               <span
                 onClick={() => iconClickCallBack?.(inputValue)}
                 className={clsx(
-                  "inline-flex justify-center items-center text-base cursor-pointer ",
+                  "inline-flex justify-center items-center text-base sm:text-2xl cursor-pointer ",
                   endIcon,
                   iconVariant == "outlined"
                     ? "text-primary-6"
-                    : "w-[18px] h-[18px] sm:w-8 sm:h-8 text-white rounded-[100%] bg-[linear-gradient(213deg,_#0086AF_11.37%,_#006E8F_35.94%,_#006E8F_63.67%,_#00A3D5_89.05%)]"
+                    : "w-[18px] h-[18px] sm:w-8 md:h-8 text-white rounded-[100%]"
                 )}
-              />
+              >
+                {typeof endIcon === "string" ? null : endIcon}
+              </span>
             )}
             {haveKeyboard && (
               <VirtualKeyboard

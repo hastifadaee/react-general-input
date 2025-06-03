@@ -1,6 +1,4 @@
 import clsx from "clsx";
-import React from "react";
-import "react-simple-keyboard/build/css/index.css";
 import { TBaseInput } from "../types/TextInputTypes";
 
 const BaseInput = ({
@@ -15,7 +13,6 @@ const BaseInput = ({
   inputValue,
   setInputFocus,
   thousandSeparate,
-  
   ...props
 }: TBaseInput) => {
   return (

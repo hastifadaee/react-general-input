@@ -1,7 +1,6 @@
 import { __assign, __rest } from "tslib";
 import { jsx as _jsx } from "react/jsx-runtime";
 import clsx from "clsx";
-import "react-simple-keyboard/build/css/index.css";
 var BaseInput = function (_a) {
     var _b;
     var maxLength = _a.maxLength, rhfRegister = _a.rhfRegister, type = _a.type, onBlur = _a.onBlur, dir = _a.dir, name = _a.name, iconClickCallBack = _a.iconClickCallBack, onChange = _a.onChange, inputValue = _a.inputValue, setInputFocus = _a.setInputFocus, thousandSeparate = _a.thousandSeparate, props = __rest(_a, ["maxLength", "rhfRegister", "type", "onBlur", "dir", "name", "iconClickCallBack", "onChange", "inputValue", "setInputFocus", "thousandSeparate"]);
