@@ -27,6 +27,7 @@ const BasePasswordInput = ({
   multiLangKeyboard,
   ref,
   startIcon,
+  wrapperStyle,
   ...props
 }: TPasswordInput) => {
   const [inputFocus, setInputFocus] = useState(false);
@@ -44,6 +45,7 @@ const BasePasswordInput = ({
   };
   return (
     <TextInputWrapper
+      wrapperStyle={wrapperStyle}
       inputClassName={inputClassName}
       labelClassName={labelClassName}
       required={required}

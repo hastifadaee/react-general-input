@@ -30,6 +30,7 @@ const BaseTextInput = ({
   multiLangKeyboard,
   ref,
   setValue,
+  wrapperStyle,
   ...props
 }: TBaseTextInput) => {
   const [inputValue, setInputValue] = useState<string>(defaultValue ?? "");
@@ -39,6 +40,7 @@ const BaseTextInput = ({
   }, [defaultValue]);
   return (
     <TextInputWrapper
+      wrapperStyle={wrapperStyle}
       inputClassName={inputClassName}
       labelClassName={labelClassName}
       required={required}
