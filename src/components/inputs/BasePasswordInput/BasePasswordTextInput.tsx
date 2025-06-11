@@ -50,7 +50,7 @@ const BasePasswordInput = ({
       labelClassName={labelClassName}
       required={required}
       error={error}
-      haveKeyboard
+      haveKeyboard={false}
       inputValue={inputValue}
       setInputValue={setInputValue}
       className={className}
