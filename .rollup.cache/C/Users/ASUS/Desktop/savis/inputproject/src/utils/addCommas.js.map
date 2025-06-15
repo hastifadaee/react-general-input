@@ -1,0 +1,1 @@
+{"version":3,"file":"addCommas.js","sourceRoot":"","sources":["addCommas.ts"],"names":[],"mappings":"AAAA,MAAM,CAAC,IAAM,SAAS,GAAG,UAAC,GAAW;IACrC,OAAA,GAAG,CAAC,QAAQ,EAAE,CAAC,OAAO,CAAC,uBAAuB,EAAE,GAAG,CAAC;AAApD,CAAoD,CAAC","sourcesContent":["export const addCommas = (num: string) =>\r\nnum.toString().replace(/\\B(?=(\\d{3})+(?!\\d))/g, \",\");"]}

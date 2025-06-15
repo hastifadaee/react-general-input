@@ -7,7 +7,7 @@ import TextInputWrapper from "../TextInputWrapper/TextInputWrapper";
 
 const BasePasswordInput = ({
   rhfRegister,
-  haveKeyboard,
+  haveKeyboard = false,
   defaultValue,
   placeholder,
   onChange,
