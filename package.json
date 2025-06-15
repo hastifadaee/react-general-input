@@ -1,7 +1,7 @@
 {
   "name": "react-general-input",
   "private": false,
-  "version": "0.0.66",
+  "version": "0.0.71",
   "type": "module",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
@@ -22,7 +22,8 @@
     "react-simple-keyboard": "^3.8.60",
     "rollup": "^4.40.2",
     "rollup-plugin-postcss": "^4.0.2",
-    "simple-keyboard": "^2.3.17"
+    "simple-keyboard": "^2.3.17",
+    "sass": "^1.77.4"
   },
   "peerDependencies": {
     "react": "^18.2.0",

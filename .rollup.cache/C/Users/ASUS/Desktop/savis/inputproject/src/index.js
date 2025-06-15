@@ -6,5 +6,6 @@ import TextInputWrapper from "./components/inputs/TextInputWrapper/TextInputWrap
 import VirtualKeyboard from "./components/VirtualKeyboard/VirtualKeyboard";
 import "./tailwind.css";
 import "react-simple-keyboard/build/css/index.css";
+import "./assets/global.scss";
 export { BaseInput, BaseNumberInput, BasePasswordInput, BaseTextInput, TextInputWrapper, VirtualKeyboard, };
 //# sourceMappingURL=index.js.map
