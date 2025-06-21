@@ -34,14 +34,27 @@ const TextInputWrapper = forwardRef(
       setValue,
       rhfRegister,
       wrapperStyle,
+      clearErrors,
+      rhfOptions,
     }: TTextInputWrapper,
     ref: any
   ) => {
     const [isKeyboardShow, setIsKeyboardShow] = useState(false);
     const inputSetter = (input: string) => {
+      const validated = rhfOptions?.validate as {
+        isValid: (input: string) => boolean;
+      };
       setInputValue(input);
-      rhfRegister?.name &&
-        setValue?.(rhfRegister?.name, input, { shouldValidate: true });
+      rhfRegister?.name && setValue?.(rhfRegister?.name, input);
+      rhfOptions?.hasOwnProperty("validate")
+        ? rhfOptions.validate?.hasOwnProperty("isValid")
+          ? typeof validated?.isValid(input) !== "string" &&
+            clearErrors?.(rhfRegister?.name)
+          : typeof rhfOptions?.validate !== "string" &&
+            clearErrors?.(rhfRegister?.name)
+        : rhfOptions?.required &&
+          input.length &&
+          clearErrors?.(rhfRegister?.name);
     };
     const keyboardOnChange = (input: string) => {
       inputSetter(inputValue.concat(input));

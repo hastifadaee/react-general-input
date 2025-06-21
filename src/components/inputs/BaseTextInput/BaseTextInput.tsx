@@ -31,6 +31,8 @@ const BaseTextInput = ({
   ref,
   setValue,
   wrapperStyle,
+  clearErrors,
+  rhfOptions,
   ...props
 }: TBaseTextInput) => {
   const [inputValue, setInputValue] = useState<string>(defaultValue ?? "");
@@ -64,6 +66,8 @@ const BaseTextInput = ({
       rhfRegister={rhfRegister}
       ref={ref}
       setValue={setValue}
+      clearErrors={clearErrors}
+      rhfOptions={rhfOptions}
     >
       <BaseInput
         {...props}

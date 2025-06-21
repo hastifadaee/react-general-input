@@ -28,6 +28,8 @@ const BasePasswordInput = ({
   ref,
   startIcon,
   wrapperStyle,
+  rhfOptions,
+  clearErrors,
   ...props
 }: TPasswordInput) => {
   const [inputFocus, setInputFocus] = useState(false);
@@ -67,6 +69,8 @@ const BasePasswordInput = ({
       ref={ref}
       setValue={setValue}
       startIcon={startIcon}
+      clearErrors={clearErrors}
+      rhfOptions={rhfOptions}
     >
       {inputValue && passwordStrengthCheck && (
         <p

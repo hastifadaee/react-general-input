@@ -10,6 +10,8 @@ import {
   FieldError,
   FieldErrorsImpl,
   Merge,
+  RegisterOptions,
+  UseFormClearErrors,
   UseFormSetValue,
 } from "react-hook-form";
 
@@ -55,6 +57,8 @@ export type TInputBaseType = {
   ref?: any;
   setValue?: UseFormSetValue<any>;
   startIcon?: string | ReactNode;
+  clearErrors?: UseFormClearErrors<any>;
+  rhfOptions?: RegisterOptions<any>;
 } & TGeneralInputType;
 
 export type TTextInputWrapper = {

@@ -32,6 +32,8 @@ const BaseNumberInput = ({
   setValue,
   startIcon,
   wrapperStyle,
+  clearErrors,
+  rhfOptions,
   ...props
 }: TBaseNumberInput) => {
   const [inputFocus, setInputFocus] = useState(false);
@@ -71,6 +73,8 @@ const BaseNumberInput = ({
       setValue={setValue}
       startIcon={startIcon}
       thousandSeparate={thousandSeparate}
+      clearErrors={clearErrors}
+      rhfOptions={rhfOptions}
     >
       <BaseInput
         {...props}
