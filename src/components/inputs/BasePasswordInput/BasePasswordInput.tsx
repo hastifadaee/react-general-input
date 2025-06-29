@@ -30,6 +30,8 @@ const BasePasswordInput = ({
   wrapperStyle,
   rhfOptions,
   clearErrors,
+  helperTextClassName,
+  passwordIconClassName,
   ...props
 }: TPasswordInput) => {
   const [inputFocus, setInputFocus] = useState(false);
@@ -71,6 +73,7 @@ const BasePasswordInput = ({
       startIcon={startIcon}
       clearErrors={clearErrors}
       rhfOptions={rhfOptions}
+      helperTextClassName={helperTextClassName}
     >
       {inputValue && passwordStrengthCheck && (
         <p
@@ -107,7 +110,8 @@ const BasePasswordInput = ({
         className={clsx(
           showPassword ? "icon-Eye !text-xl" : "icon-Hide-Password ",
           "inline-flex justify-end items-center text-base cursor-pointer text-primary-6 w-[18px] h-[18px] sm:w-8 sm:h-8 rounded-[100%] ",
-          endIcon && "justify-center"
+          endIcon && "justify-center",
+          passwordIconClassName
         )}
       />
     </TextInputWrapper>

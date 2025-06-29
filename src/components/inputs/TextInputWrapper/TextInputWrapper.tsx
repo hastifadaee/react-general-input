@@ -36,6 +36,7 @@ const TextInputWrapper = forwardRef(
       wrapperStyle,
       clearErrors,
       rhfOptions,
+      helperTextClassName,
     }: TTextInputWrapper,
     ref: any
   ) => {
@@ -44,6 +45,7 @@ const TextInputWrapper = forwardRef(
       const validated = rhfOptions?.validate as {
         isValid: (input: string) => boolean;
       };
+
       setInputValue(input);
       rhfRegister?.name && setValue?.(rhfRegister?.name, input);
       rhfOptions?.hasOwnProperty("validate")
@@ -156,7 +158,8 @@ const TextInputWrapper = forwardRef(
           <p
             className={clsx(
               "text-xs flex items-center mt-2",
-              error ? "text-danger-0" : "text-neutral-5"
+              error ? "text-danger-0" : "text-neutral-5",
+              helperTextClassName
             )}
           >
             <span className={clsx("icon-Danger-Circle1 text-sm ml-2")}></span>

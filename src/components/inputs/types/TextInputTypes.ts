@@ -59,6 +59,7 @@ export type TInputBaseType = {
   startIcon?: string | ReactNode;
   clearErrors?: UseFormClearErrors<any>;
   rhfOptions?: RegisterOptions<any>;
+  helperTextClassName?: string;
 } & TGeneralInputType;
 
 export type TTextInputWrapper = {
@@ -73,6 +74,7 @@ export type TTextInputWrapper = {
   inputValue: string;
   iconVariant?: "contained" | "outlined";
   children: ReactNode;
+  passwordIconClassName?: string;
 } & Omit<TInputBaseType, keyof HTMLInputType>;
 
 export type TBaseTextInput = {
@@ -83,6 +85,7 @@ export type TBaseTextInput = {
 
 export type TPasswordInput = {
   passwordStrengthCheck?: boolean;
+  passwordIconClassName?: string;
 } & TInputBaseType;
 
 export type TBaseNumberInput = {

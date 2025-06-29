@@ -34,6 +34,7 @@ const BaseNumberInput = ({
   wrapperStyle,
   clearErrors,
   rhfOptions,
+  helperTextClassName,
   ...props
 }: TBaseNumberInput) => {
   const [inputFocus, setInputFocus] = useState(false);
@@ -45,7 +46,7 @@ const BaseNumberInput = ({
       ? setInputValue(addCommas(removeNonNumeric(defaultValue || "")))
       : setInputValue(defaultValue || "");
   }, [defaultValue]);
-
+  
   return (
     <TextInputWrapper
       wrapperStyle={wrapperStyle}
@@ -75,6 +76,7 @@ const BaseNumberInput = ({
       thousandSeparate={thousandSeparate}
       clearErrors={clearErrors}
       rhfOptions={rhfOptions}
+      helperTextClassName={helperTextClassName}
     >
       <BaseInput
         {...props}

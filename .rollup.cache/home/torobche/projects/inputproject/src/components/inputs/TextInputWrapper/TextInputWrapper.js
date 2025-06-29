@@ -7,12 +7,22 @@ import { addCommas } from "@/utils/addCommas";
 import { removeNonNumeric } from "@/utils/removeNonNumeric";
 import VirtualKeyboard from "@/components/VirtualKeyboard/VirtualKeyboard";
 var TextInputWrapper = forwardRef(function (_a, ref) {
-    var _b = _a.defaultValue, defaultValue = _b === void 0 ? "" : _b, label = _a.label, placeholder = _a.placeholder, _c = _a.required, required = _c === void 0 ? false : _c, helperText = _a.helperText, _d = _a.error, error = _d === void 0 ? false : _d, _e = _a.disabled, disabled = _e === void 0 ? false : _e, iconClickCallBack = _a.iconClickCallBack, startIcon = _a.startIcon, endIcon = _a.endIcon, iconVariant = _a.iconVariant, className = _a.className, _f = _a.haveKeyboard, haveKeyboard = _f === void 0 ? false : _f, _g = _a.numericKeyboard, numericKeyboard = _g === void 0 ? false : _g, _h = _a.multiLangKeyboard, multiLangKeyboard = _h === void 0 ? false : _h, children = _a.children, setInputValue = _a.setInputValue, inputValue = _a.inputValue, inputFocus = _a.inputFocus, thousandSeparate = _a.thousandSeparate, _j = _a.labelClassName, labelClassName = _j === void 0 ? "" : _j, _k = _a.inputClassName, inputClassName = _k === void 0 ? "" : _k, setValue = _a.setValue, rhfRegister = _a.rhfRegister, wrapperStyle = _a.wrapperStyle;
+    var _b = _a.defaultValue, defaultValue = _b === void 0 ? "" : _b, label = _a.label, placeholder = _a.placeholder, _c = _a.required, required = _c === void 0 ? false : _c, helperText = _a.helperText, _d = _a.error, error = _d === void 0 ? false : _d, _e = _a.disabled, disabled = _e === void 0 ? false : _e, iconClickCallBack = _a.iconClickCallBack, startIcon = _a.startIcon, endIcon = _a.endIcon, iconVariant = _a.iconVariant, className = _a.className, _f = _a.haveKeyboard, haveKeyboard = _f === void 0 ? false : _f, _g = _a.numericKeyboard, numericKeyboard = _g === void 0 ? false : _g, _h = _a.multiLangKeyboard, multiLangKeyboard = _h === void 0 ? false : _h, children = _a.children, setInputValue = _a.setInputValue, inputValue = _a.inputValue, inputFocus = _a.inputFocus, thousandSeparate = _a.thousandSeparate, _j = _a.labelClassName, labelClassName = _j === void 0 ? "" : _j, _k = _a.inputClassName, inputClassName = _k === void 0 ? "" : _k, setValue = _a.setValue, rhfRegister = _a.rhfRegister, wrapperStyle = _a.wrapperStyle, clearErrors = _a.clearErrors, rhfOptions = _a.rhfOptions, helperTextClassName = _a.helperTextClassName;
     var _l = __read(useState(false), 2), isKeyboardShow = _l[0], setIsKeyboardShow = _l[1];
     var inputSetter = function (input) {
+        var _a;
+        var validated = rhfOptions === null || rhfOptions === void 0 ? void 0 : rhfOptions.validate;
         setInputValue(input);
-        (rhfRegister === null || rhfRegister === void 0 ? void 0 : rhfRegister.name) &&
-            (setValue === null || setValue === void 0 ? void 0 : setValue(rhfRegister === null || rhfRegister === void 0 ? void 0 : rhfRegister.name, input, { shouldValidate: true }));
+        (rhfRegister === null || rhfRegister === void 0 ? void 0 : rhfRegister.name) && (setValue === null || setValue === void 0 ? void 0 : setValue(rhfRegister === null || rhfRegister === void 0 ? void 0 : rhfRegister.name, input));
+        (rhfOptions === null || rhfOptions === void 0 ? void 0 : rhfOptions.hasOwnProperty("validate"))
+            ? ((_a = rhfOptions.validate) === null || _a === void 0 ? void 0 : _a.hasOwnProperty("isValid"))
+                ? typeof (validated === null || validated === void 0 ? void 0 : validated.isValid(input)) !== "string" &&
+                    (clearErrors === null || clearErrors === void 0 ? void 0 : clearErrors(rhfRegister === null || rhfRegister === void 0 ? void 0 : rhfRegister.name))
+                : typeof (rhfOptions === null || rhfOptions === void 0 ? void 0 : rhfOptions.validate) !== "string" &&
+                    (clearErrors === null || clearErrors === void 0 ? void 0 : clearErrors(rhfRegister === null || rhfRegister === void 0 ? void 0 : rhfRegister.name))
+            : (rhfOptions === null || rhfOptions === void 0 ? void 0 : rhfOptions.required) &&
+                input.length &&
+                (clearErrors === null || clearErrors === void 0 ? void 0 : clearErrors(rhfRegister === null || rhfRegister === void 0 ? void 0 : rhfRegister.name));
     };
     var keyboardOnChange = function (input) {
         inputSetter(inputValue.concat(input));
@@ -41,7 +51,7 @@ var TextInputWrapper = forwardRef(function (_a, ref) {
                                     ? "text-primary-6"
                                     : "w-[18px] h-[18px] md:w-8 md:h-8 text-white rounded-[100%]"), children: typeof startIcon === "string" ? null : startIcon })), children, endIcon && (_jsx("span", { onClick: function () { return iconClickCallBack === null || iconClickCallBack === void 0 ? void 0 : iconClickCallBack(inputValue); }, className: clsx("inline-flex justify-center items-center text-base sm:text-2xl cursor-pointer ", endIcon, iconVariant == "outlined"
                                     ? "text-primary-6"
-                                    : "w-[18px] h-[18px] sm:w-8 md:h-8 text-white rounded-[100%]"), children: typeof endIcon === "string" ? null : endIcon })), haveKeyboard && (_jsx(VirtualKeyboard, { handleBackSpace: handleBackSpace, multiLang: multiLangKeyboard, isNumeric: numericKeyboard, keyboardOnChange: keyboardOnChange, isKeyboardShow: isKeyboardShow, setIsKeyboardShow: setIsKeyboardShow }))] })] }), helperText && (_jsxs("p", { className: clsx("text-xs flex items-center mt-2", error ? "text-danger-0" : "text-neutral-5"), children: [_jsx("span", { className: clsx("icon-Danger-Circle1 text-sm ml-2") }), helperText.toString()] }))] }));
+                                    : "w-[18px] h-[18px] sm:w-8 md:h-8 text-white rounded-[100%]"), children: typeof endIcon === "string" ? null : endIcon })), haveKeyboard && (_jsx(VirtualKeyboard, { handleBackSpace: handleBackSpace, multiLang: multiLangKeyboard, isNumeric: numericKeyboard, keyboardOnChange: keyboardOnChange, isKeyboardShow: isKeyboardShow, setIsKeyboardShow: setIsKeyboardShow }))] })] }), helperText && (_jsxs("p", { className: clsx("text-xs flex items-center mt-2", error ? "text-danger-0" : "text-neutral-5", helperTextClassName), children: [_jsx("span", { className: clsx("icon-Danger-Circle1 text-sm ml-2") }), helperText.toString()] }))] }));
 });
 export default TextInputWrapper;
 //# sourceMappingURL=TextInputWrapper.js.map
