@@ -32,6 +32,7 @@ const BasePasswordInput = ({
   clearErrors,
   helperTextClassName,
   passwordIconClassName,
+  passwordStrengthCheckClassName,
   ...props
 }: TPasswordInput) => {
   const [inputFocus, setInputFocus] = useState(false);
@@ -79,7 +80,8 @@ const BasePasswordInput = ({
         <p
           className={clsx(
             passwordStrengthData[passwordStrength(inputValue).id].color,
-            "text-danger-0 text-[10px] sm:text-xs md:text-sm flex items-center mt-2 absolute top-[-30px] md:top-[-35px] left-0"
+            "text-danger-0 text-[10px] sm:text-xs md:text-sm flex items-center mt-2 absolute top-[-30px] md:top-[-35px] left-0",
+            passwordStrengthCheckClassName
           )}
         >
           {passwordStrengthData[passwordStrength(inputValue).id]?.text}

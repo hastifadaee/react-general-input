@@ -86,6 +86,7 @@ export type TBaseTextInput = {
 export type TPasswordInput = {
   passwordStrengthCheck?: boolean;
   passwordIconClassName?: string;
+  passwordStrengthCheckClassName?: string;
 } & TInputBaseType;
 
 export type TBaseNumberInput = {

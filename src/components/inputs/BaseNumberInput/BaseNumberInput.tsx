@@ -23,7 +23,7 @@ const BaseNumberInput = ({
   error = false,
   required = false,
   iconVariant,
-  thousandSeparate = true,
+  thousandSeparate = false,
   labelClassName,
   inputClassName,
   endIcon,
@@ -46,7 +46,7 @@ const BaseNumberInput = ({
       ? setInputValue(addCommas(removeNonNumeric(defaultValue || "")))
       : setInputValue(defaultValue || "");
   }, [defaultValue]);
-  
+
   return (
     <TextInputWrapper
       wrapperStyle={wrapperStyle}
