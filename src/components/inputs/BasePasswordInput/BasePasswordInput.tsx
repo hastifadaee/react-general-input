@@ -33,17 +33,17 @@ const BasePasswordInput = ({
   helperTextClassName,
   passwordIconClassName,
   passwordStrengthCheckClassName,
+  passwordStrengthData = [
+    { text: "خیلی ضعیف", color: "text-secondary-2" },
+    { text: "ضعیف", color: "text-secondary-5" },
+    { text: "متوسط", color: "text-lowLevel-0" },
+    { text: "قوی", color: "text-success-0" },
+  ],
   ...props
 }: TPasswordInput) => {
   const [inputFocus, setInputFocus] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const [inputValue, setInputValue] = useState(defaultValue ?? "");
-  const passwordStrengthData = [
-    { text: "خیلی ضعیف", color: "text-secondary-2" },
-    { text: "ضعیف", color: "text-secondary-5" },
-    { text: "متوسط", color: "text-lowLevel-0" },
-    { text: "قوی", color: "text-success-0" },
-  ];
   const passwordCharChecker = (e: React.ChangeEvent<HTMLInputElement>) => {
     let value = e.target.value;
     return value.replace(/[^A-Za-z0-9!@#$%^&*()\-_=+{};:,<.>]/g, "");
@@ -79,9 +79,9 @@ const BasePasswordInput = ({
       {inputValue && passwordStrengthCheck && (
         <p
           className={clsx(
-            passwordStrengthData[passwordStrength(inputValue).id].color,
-            "text-danger-0 text-[10px] sm:text-xs md:text-sm flex items-center mt-2 absolute top-[-30px] md:top-[-35px] left-0",
-            passwordStrengthCheckClassName
+            "text-[10px] sm:text-xs md:text-sm flex items-center mt-2 absolute top-[-30px] md:top-[-35px] left-0",
+            passwordStrengthCheckClassName,
+            passwordStrengthData[passwordStrength(inputValue).id].color
           )}
         >
           {passwordStrengthData[passwordStrength(inputValue).id]?.text}
