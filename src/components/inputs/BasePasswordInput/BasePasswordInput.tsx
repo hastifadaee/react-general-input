@@ -20,8 +20,6 @@ const BasePasswordInput = ({
   helperText = "",
   error = false,
   required = false,
-  inputClassName,
-  labelClassName,
   name,
   setValue,
   multiLangKeyboard,
@@ -30,9 +28,6 @@ const BasePasswordInput = ({
   wrapperStyle,
   rhfOptions,
   clearErrors,
-  helperTextClassName,
-  passwordIconClassName,
-  passwordStrengthCheckClassName,
   passwordStrengthData = [
     { text: "خیلی ضعیف", color: "text-secondary-2" },
     { text: "ضعیف", color: "text-secondary-5" },
@@ -51,8 +46,6 @@ const BasePasswordInput = ({
   return (
     <TextInputWrapper
       wrapperStyle={wrapperStyle}
-      inputClassName={inputClassName}
-      labelClassName={labelClassName}
       required={required}
       error={error}
       haveKeyboard={false}
@@ -74,13 +67,11 @@ const BasePasswordInput = ({
       startIcon={startIcon}
       clearErrors={clearErrors}
       rhfOptions={rhfOptions}
-      helperTextClassName={helperTextClassName}
     >
       {inputValue && passwordStrengthCheck && (
         <p
           className={clsx(
-            "text-[10px] sm:text-xs md:text-sm flex items-center mt-2 absolute top-[-30px] md:top-[-35px] left-0",
-            passwordStrengthCheckClassName,
+            "rgi-passwordStrengthCheckClassName",
             passwordStrengthData[passwordStrength(inputValue).id].color
           )}
         >
@@ -110,10 +101,9 @@ const BasePasswordInput = ({
       <span
         onClick={() => setShowPassword(!showPassword)}
         className={clsx(
-          showPassword ? "icon-Eye !text-xl" : "icon-Hide-Password ",
-          "inline-flex justify-end items-center text-base cursor-pointer text-primary-6 w-[18px] h-[18px] sm:w-8 sm:h-8 rounded-[100%] ",
-          endIcon && "justify-center",
-          passwordIconClassName
+          showPassword ? "icon-Eye !text-xl" : "icon-Hide-Password",
+          "rgi-passwordIconClassName",
+          endIcon && "justify-center"
         )}
       />
     </TextInputWrapper>

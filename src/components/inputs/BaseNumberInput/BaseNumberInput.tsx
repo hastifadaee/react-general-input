@@ -24,8 +24,6 @@ const BaseNumberInput = ({
   required = false,
   iconVariant,
   thousandSeparate = false,
-  labelClassName,
-  inputClassName,
   endIcon,
   multiLangKeyboard,
   ref,
@@ -34,7 +32,6 @@ const BaseNumberInput = ({
   wrapperStyle,
   clearErrors,
   rhfOptions,
-  helperTextClassName,
   ...props
 }: TBaseNumberInput) => {
   const [inputFocus, setInputFocus] = useState(false);
@@ -50,8 +47,6 @@ const BaseNumberInput = ({
   return (
     <TextInputWrapper
       wrapperStyle={wrapperStyle}
-      inputClassName={inputClassName}
-      labelClassName={labelClassName}
       iconVariant={iconVariant}
       required={required}
       error={error}
@@ -76,7 +71,6 @@ const BaseNumberInput = ({
       thousandSeparate={thousandSeparate}
       clearErrors={clearErrors}
       rhfOptions={rhfOptions}
-      helperTextClassName={helperTextClassName}
     >
       <BaseInput
         {...props}

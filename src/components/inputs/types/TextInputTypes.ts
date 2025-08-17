@@ -45,8 +45,6 @@ export type ErrorText =
 
 export type TInputBaseType = {
   wrapperStyle?: CSSProperties;
-  labelClassName?: string;
-  inputClassName?: string;
   helperText?: ErrorText;
   error?: boolean;
   haveKeyboard?: boolean;
@@ -59,7 +57,6 @@ export type TInputBaseType = {
   startIcon?: string | ReactNode;
   clearErrors?: UseFormClearErrors<any>;
   rhfOptions?: RegisterOptions<any>;
-  helperTextClassName?: string;
 } & TGeneralInputType;
 
 export type TTextInputWrapper = {
@@ -85,8 +82,6 @@ export type TBaseTextInput = {
 
 export type TPasswordInput = {
   passwordStrengthCheck?: boolean;
-  passwordIconClassName?: string;
-  passwordStrengthCheckClassName?: string;
   passwordStrengthData?: { text: string; color: string }[];
 } & TInputBaseType;
 

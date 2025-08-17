@@ -29,14 +29,11 @@ const TextInputWrapper = forwardRef(
       inputValue,
       inputFocus,
       thousandSeparate,
-      labelClassName = "",
-      inputClassName = "",
       setValue,
       rhfRegister,
       wrapperStyle,
       clearErrors,
       rhfOptions,
-      helperTextClassName,
     }: TTextInputWrapper,
     ref: any
   ) => {
@@ -78,7 +75,10 @@ const TextInputWrapper = forwardRef(
       rhfRegister?.name && setValue?.(rhfRegister?.name, inputValue);
     }, [inputValue]);
     return (
-      <div style={wrapperStyle} className={className}>
+      <div
+        style={wrapperStyle}
+        className={clsx("rgi-wrapperClassName", className)}
+      >
         <div
           className={"w-full flex justify-between items-start gap-2 flex-col"}
         >
@@ -90,8 +90,7 @@ const TextInputWrapper = forwardRef(
                     inputValue || inputFocus || !placeholder
                       ? "opacity-100"
                       : " translate-y-8 -translate-x-1  opacity-0 pointer-events-none",
-                    "!text-neutral-2  transition-all relative text-[10px] sm:text-xs md:text-sm",
-                    labelClassName
+                    "rgi-labelClassName"
                   )}
                 >
                   {label}
@@ -109,8 +108,7 @@ const TextInputWrapper = forwardRef(
               !disabled &&
                 !error &&
                 "hover:shadow-[0px_0px_8px_0px_rgba(50,49,118,0.16),0px_4px_4px_0px_rgba(50,49,118,0.16)] transition-shadow ",
-              disabled && "!bg-neutral-10",
-              inputClassName
+              disabled && "!bg-neutral-10"
             )}
           >
             {startIcon && (
@@ -157,9 +155,8 @@ const TextInputWrapper = forwardRef(
         {helperText && (
           <p
             className={clsx(
-              "text-xs flex items-center mt-2",
+              "rgi-helperTextClassName",
               error ? "text-danger-0" : "text-neutral-5",
-              helperTextClassName
             )}
           >
             <span className={clsx("icon-Danger-Circle1 text-sm ml-2")}></span>

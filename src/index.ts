@@ -7,6 +7,8 @@ import VirtualKeyboard from "./components/VirtualKeyboard/VirtualKeyboard";
 import "./tailwind.css";
 import "react-simple-keyboard/build/css/index.css";
 import "./assets/global.scss";
+import "./assets/styles/styles.scss";
+
 export {
   BaseInput,
   BaseNumberInput,

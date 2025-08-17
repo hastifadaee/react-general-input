@@ -1,7 +1,7 @@
 {
   "name": "react-general-input",
   "private": false,
-  "version": "0.0.87",
+  "version": "0.0.91",
   "type": "module",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
@@ -12,7 +12,9 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "rollup": "rollup -c --bundleConfigAsCjs",
-    "build:css": "npx tailwindcss -i ./src/tailwind.css -o ./dist/tailwind.css --minify"
+    "build:scss": "sass ./src/assets/styles/styles.scss ./dist/styles.css --style=compressed",
+    "build:css": "npx tailwindcss -i ./src/tailwind.css -o ./dist/tailwind.css --minify",
+    "build:all": "npm run build:css && npm run build:scss"
   },
   "dependencies": {
     "@material-tailwind/react": "^2.1.10",

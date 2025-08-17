@@ -25,15 +25,12 @@ const BaseTextInput = ({
   endIcon,
   startIcon,
   iconVariant,
-  inputClassName,
-  labelClassName,
   multiLangKeyboard,
   ref,
   setValue,
   wrapperStyle,
   clearErrors,
   rhfOptions,
-  helperTextClassName,
   ...props
 }: TBaseTextInput) => {
   const [inputValue, setInputValue] = useState<string>(defaultValue ?? "");
@@ -44,8 +41,6 @@ const BaseTextInput = ({
   return (
     <TextInputWrapper
       wrapperStyle={wrapperStyle}
-      inputClassName={inputClassName}
-      labelClassName={labelClassName}
       required={required}
       haveKeyboard={haveKeyboard}
       numericKeyboard={numericKeyboard}
@@ -69,7 +64,6 @@ const BaseTextInput = ({
       setValue={setValue}
       clearErrors={clearErrors}
       rhfOptions={rhfOptions}
-      helperTextClassName={helperTextClassName}
     >
       <BaseInput
         {...props}
