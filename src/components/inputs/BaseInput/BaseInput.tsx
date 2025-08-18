@@ -38,7 +38,7 @@ const BaseInput = ({
       }}
       {...(dir === "ltr" ? { dir: "ltr" } : {})}
       className={clsx(
-        "rgi-baseInputClassName",
+        "baseInputClassName",
         dir === "ltr" && "text-left placeholder:text-right"
       )}
       {...props}

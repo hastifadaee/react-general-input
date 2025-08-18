@@ -4,6 +4,14 @@ import BasePasswordInput from "./components/inputs/BasePasswordInput/BasePasswor
 import BaseTextInput from "./components/inputs/BaseTextInput/BaseTextInput";
 import TextInputWrapper from "./components/inputs/TextInputWrapper/TextInputWrapper";
 import VirtualKeyboard from "./components/VirtualKeyboard/VirtualKeyboard";
+
+import type {
+  TBaseInput,
+  TBaseNumberInput,
+  TBaseTextInput,
+  TPasswordInput,
+} from "./components/inputs/types/TextInputTypes";
+
 import "./tailwind.css";
 import "react-simple-keyboard/build/css/index.css";
 import "./assets/global.scss";
@@ -17,3 +25,5 @@ export {
   TextInputWrapper,
   VirtualKeyboard,
 };
+
+export type { TBaseInput, TBaseNumberInput, TBaseTextInput, TPasswordInput };
