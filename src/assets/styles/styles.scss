@@ -1,4 +1,4 @@
-.baseInputClassName {
+.baseInput {
   width: 100%;
   height: 100%;
   outline: none;
@@ -32,13 +32,13 @@
   }
 }
 
-.rgi-baseInputBoxClassName {
+.rgi-baseInputBox {
 }
 
-.rgi-wrapperClassName {
+.rgi-wrapper {
 }
 
-.rgi-labelClassName {
+.rgi-label {
   color: #181d27;
   position: relative;
   font-size: 10px;
@@ -55,14 +55,21 @@
   }
 }
 
-.rgi-helperTextClassName {
+.rgi-validHelperText {
   font-size: 12px;
   display: flex;
   align-items: center;
   margin-top: 4px;
 }
 
-.rgi-passwordIconClassName {
+.rgi-ErrorHelperText {
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  margin-top: 4px;
+}
+
+.rgi-passwordIcon {
   width: 18px;
   height: 16px;
   display: inline-flex;
@@ -80,7 +87,7 @@
   }
 }
 
-.rgi-passwordStrengthCheckClassName {
+.rgi-passwordStrengthCheck {
   display: flex;
   align-items: center;
   position: absolute;
@@ -99,8 +106,8 @@
   }
 }
 
-.rgi-inputErrorClassName {
+.rgi-errorInput {
 }
 
-.rgi-inputValidClassName {
+.rgi-validInput {
 }

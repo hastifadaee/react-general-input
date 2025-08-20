@@ -42,7 +42,6 @@ const TextInputWrapper = forwardRef(
       const validated = rhfOptions?.validate as {
         isValid: (input: string) => boolean;
       };
-
       setInputValue(input);
       rhfRegister?.name && setValue?.(rhfRegister?.name, input);
       rhfOptions?.hasOwnProperty("validate")
@@ -75,10 +74,7 @@ const TextInputWrapper = forwardRef(
       rhfRegister?.name && setValue?.(rhfRegister?.name, inputValue);
     }, [inputValue]);
     return (
-      <div
-        style={wrapperStyle}
-        className={clsx("rgi-wrapperClassName", className)}
-      >
+      <div style={wrapperStyle} className={clsx("rgi-wrapper", className)}>
         <div
           className={"w-full flex justify-between items-start gap-2 flex-col"}
         >
@@ -90,9 +86,7 @@ const TextInputWrapper = forwardRef(
                     inputValue || inputFocus || !placeholder
                       ? "opacity-100"
                       : " translate-y-8 -translate-x-1  opacity-0 pointer-events-none",
-                                          "!text-neutral-2  transition-all relative text-[10px] sm:text-xs md:text-sm",
-
-                    "rgi-labelClassName"
+                    "rgi-label"
                   )}
                 >
                   {label}
@@ -104,14 +98,14 @@ const TextInputWrapper = forwardRef(
           <div
             className={clsx(
               error
-                ? "shadow-[0px_0px_8px_0px_rgba(221,19,0,0.26)] rgi-inputErrorClassName"
-                : "shadow-[0px_0px_8px_0px_rgba(50,49,118,0.16)] rgi-inputValidClassName",
-              "transition-transform  w-full px-4 py-2 h-[34px] sm:h-12 rounded flex items-center justify-between bg-white relative",
+                ? "shadow-[0px_0px_8px_0px_rgba(221,19,0,0.26)] rgi-errorInput"
+                : "shadow-[0px_0px_8px_0px_rgba(50,49,118,0.16)] rgi-validInput",
+              "transition-transform w-full px-4 py-2 h-[34px] sm:h-12 rounded flex items-center justify-between bg-white relative",
               !disabled &&
                 !error &&
                 "hover:shadow-[0px_0px_8px_0px_rgba(50,49,118,0.16),0px_4px_4px_0px_rgba(50,49,118,0.16)] transition-shadow ",
               disabled && "!bg-neutral-10",
-              "rgi-baseInputBoxClassName"
+              "rgi-baseInputBox"
             )}
           >
             {startIcon && (
@@ -158,8 +152,9 @@ const TextInputWrapper = forwardRef(
         {helperText && (
           <p
             className={clsx(
-              "rgi-helperTextClassName",
-              error ? "text-danger-0" : "text-neutral-5"
+              error
+                ? "text-danger-0 rgi-validHelperText"
+                : "text-neutral-5 rgi-ErrorHelperText"
             )}
           >
             <span className={clsx("icon-Danger-Circle1 text-sm ml-2")}></span>
