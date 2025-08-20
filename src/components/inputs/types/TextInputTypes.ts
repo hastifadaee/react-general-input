@@ -44,6 +44,7 @@ export type ErrorText =
   | Merge<FieldError, FieldErrorsImpl<any>>;
 
 export type TInputBaseType = {
+  helperTextIcon?: ReactNode | string;
   wrapperStyle?: CSSProperties;
   helperText?: ErrorText;
   error?: boolean;

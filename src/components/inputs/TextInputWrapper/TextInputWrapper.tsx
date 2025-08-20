@@ -34,6 +34,7 @@ const TextInputWrapper = forwardRef(
       wrapperStyle,
       clearErrors,
       rhfOptions,
+      helperTextIcon,
     }: TTextInputWrapper,
     ref: any
   ) => {
@@ -153,12 +154,19 @@ const TextInputWrapper = forwardRef(
           <p
             className={clsx(
               error
-                ? "text-danger-0 rgi-validHelperText"
-                : "text-neutral-5 rgi-ErrorHelperText"
+                ? "text-danger-0 rgi-errorHelperText"
+                : "text-neutral-5 rgi-validHelperText",
+              "flex items-center"
             )}
           >
-            <span className={clsx("icon-Danger-Circle1 text-sm ml-2")}></span>
-            {helperText.toString()}
+            <span
+              className={clsx(
+                "icon-Danger-Circle1 text-sm ml-2 rgi-helperTextIcon"
+              )}
+            >
+              {helperTextIcon}
+            </span>
+            <p>{helperText.toString()}</p>
           </p>
         )}
       </div>

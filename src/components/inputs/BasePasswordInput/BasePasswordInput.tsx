@@ -28,6 +28,7 @@ const BasePasswordInput = ({
   wrapperStyle,
   rhfOptions,
   clearErrors,
+  helperTextIcon,
   passwordStrengthData = [
     { text: "خیلی ضعیف", color: "text-secondary-2" },
     { text: "ضعیف", color: "text-secondary-5" },
@@ -45,6 +46,7 @@ const BasePasswordInput = ({
   };
   return (
     <TextInputWrapper
+      helperTextIcon={helperTextIcon}
       wrapperStyle={wrapperStyle}
       required={required}
       error={error}

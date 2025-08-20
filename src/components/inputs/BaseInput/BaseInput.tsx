@@ -38,7 +38,7 @@ const BaseInput = ({
       }}
       {...(dir === "ltr" ? { dir: "ltr" } : {})}
       className={clsx(
-        "baseInputClassName",
+        "baseInput",
         dir === "ltr" && "text-left placeholder:text-right"
       )}
       {...props}
