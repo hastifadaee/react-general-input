@@ -32,6 +32,7 @@ const BaseTextInput = ({
   clearErrors,
   rhfOptions,
   helperTextIcon,
+  size,
   ...props
 }: TBaseTextInput) => {
   const [inputValue, setInputValue] = useState<string>(defaultValue ?? "");
@@ -41,7 +42,8 @@ const BaseTextInput = ({
   }, [defaultValue]);
   return (
     <TextInputWrapper
-    helperTextIcon={helperTextIcon}
+      size={size}
+      helperTextIcon={helperTextIcon}
       wrapperStyle={wrapperStyle}
       required={required}
       haveKeyboard={haveKeyboard}

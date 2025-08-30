@@ -33,6 +33,7 @@ const BaseNumberInput = ({
   clearErrors,
   rhfOptions,
   helperTextIcon,
+  size,
   ...props
 }: TBaseNumberInput) => {
   const [inputFocus, setInputFocus] = useState(false);
@@ -46,6 +47,7 @@ const BaseNumberInput = ({
   }, [defaultValue]);
   return (
     <TextInputWrapper
+      size={size}
       helperTextIcon={helperTextIcon}
       wrapperStyle={wrapperStyle}
       iconVariant={iconVariant}

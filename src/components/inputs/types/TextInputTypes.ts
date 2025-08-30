@@ -17,7 +17,7 @@ import {
 
 export type HTMLInputType = Omit<
   InputHTMLAttributes<HTMLInputElement>,
-  "value" | "type" | "defaultValue" | "autoComplete"
+  "value" | "type" | "defaultValue" | "autoComplete" | "size"
 >;
 export type RHFRegister = {
   onChange: ChangeHandler;
@@ -44,6 +44,7 @@ export type ErrorText =
   | Merge<FieldError, FieldErrorsImpl<any>>;
 
 export type TInputBaseType = {
+  size?: "small" | "medium" | "large";
   helperTextIcon?: ReactNode | string;
   wrapperStyle?: CSSProperties;
   helperText?: ErrorText;

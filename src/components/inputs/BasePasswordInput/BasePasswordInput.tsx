@@ -35,6 +35,7 @@ const BasePasswordInput = ({
     { text: "متوسط", color: "text-lowLevel-0" },
     { text: "قوی", color: "text-success-0" },
   ],
+  size,
   ...props
 }: TPasswordInput) => {
   const [inputFocus, setInputFocus] = useState(false);
@@ -46,6 +47,7 @@ const BasePasswordInput = ({
   };
   return (
     <TextInputWrapper
+      size={size}
       helperTextIcon={helperTextIcon}
       wrapperStyle={wrapperStyle}
       required={required}

@@ -35,6 +35,7 @@ const TextInputWrapper = forwardRef(
       clearErrors,
       rhfOptions,
       helperTextIcon,
+      size = "medium",
     }: TTextInputWrapper,
     ref: any
   ) => {
@@ -91,7 +92,7 @@ const TextInputWrapper = forwardRef(
                   )}
                 >
                   {label}
-                  {required && <span className="text-danger-0">*</span>}
+                  {required && <span className="text-danger-0 rgi-requiredSpan">*</span>}
                 </label>
               )}
             </div>
@@ -106,7 +107,12 @@ const TextInputWrapper = forwardRef(
                 !error &&
                 "hover:shadow-[0px_0px_8px_0px_rgba(50,49,118,0.16),0px_4px_4px_0px_rgba(50,49,118,0.16)] transition-shadow ",
               disabled && "!bg-neutral-10",
-              "rgi-baseInputBox"
+              "rgi-baseInputBox",
+              size === "small"
+                ? "rgi-baseSmallInputBox"
+                : size === "medium"
+                ? "rgi-baseMediumInputBox"
+                : "rgi-baseLargeInputBox"
             )}
           >
             {startIcon && (
