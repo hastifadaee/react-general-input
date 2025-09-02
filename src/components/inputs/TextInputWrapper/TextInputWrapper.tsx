@@ -87,12 +87,19 @@ const TextInputWrapper = forwardRef(
                   className={clsx(
                     inputValue || inputFocus || !placeholder
                       ? "opacity-100"
-                      : " translate-y-8 -translate-x-1  opacity-0 pointer-events-none",
-                    "rgi-label"
+                      : " translate-y-8 -translate-x-1 opacity-0 pointer-events-none",
+                    size === "medium"
+                      ? "rgi-mediumLabel"
+                      : size === "small"
+                      ? "rgi-smallLabel"
+                      : "rgi-largeLabel",
+                      "rgi-label transition-all"
                   )}
                 >
                   {label}
-                  {required && <span className="text-danger-0 rgi-requiredSpan">*</span>}
+                  {required && (
+                    <span className="text-danger-0 rgi-requiredSpan">*</span>
+                  )}
                 </label>
               )}
             </div>
@@ -105,7 +112,7 @@ const TextInputWrapper = forwardRef(
               "transition-transform w-full px-4 py-2 h-[34px] sm:h-12 rounded flex items-center justify-between bg-white relative",
               !disabled &&
                 !error &&
-                "hover:shadow-[0px_0px_8px_0px_rgba(50,49,118,0.16),0px_4px_4px_0px_rgba(50,49,118,0.16)] transition-shadow ",
+                "hover:shadow-[0px_0px_8px_0px_rgba(50,49,118,0.16),0px_4px_4px_0px_rgba(50,49,118,0.16)] transition-shadow rgi-hoverInput",
               disabled && "!bg-neutral-10",
               "rgi-baseInputBox",
               size === "small"
@@ -172,7 +179,7 @@ const TextInputWrapper = forwardRef(
             >
               {helperTextIcon}
             </span>
-            <p>{helperText.toString()}</p>
+            <span>{helperText.toString()}</span>
           </p>
         )}
       </div>

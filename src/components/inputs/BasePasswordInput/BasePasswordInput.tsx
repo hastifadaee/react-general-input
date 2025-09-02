@@ -75,7 +75,7 @@ const BasePasswordInput = ({
       {inputValue && passwordStrengthCheck && (
         <p
           className={clsx(
-            "rgi-passwordStrengthCheckClassName",
+            "rgi-passwordStrengthCheck",
             passwordStrengthData[passwordStrength(inputValue).id].color
           )}
         >

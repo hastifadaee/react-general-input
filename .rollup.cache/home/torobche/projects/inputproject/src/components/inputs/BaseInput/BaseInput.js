@@ -14,7 +14,7 @@ var BaseInput = function (_a) {
             onBlur === null || onBlur === void 0 ? void 0 : onBlur(e);
             !thousandSeparate && (rhfRegister === null || rhfRegister === void 0 ? void 0 : rhfRegister.onBlur(e));
             setInputFocus(false);
-        } }, (dir === "ltr" ? { dir: "ltr" } : {}), { className: clsx("baseInput", dir === "ltr" && "text-left placeholder:text-right") }, props, { required: false })));
+        } }, (dir === "ltr" ? { dir: "ltr" } : {}), { className: clsx("transition-transform outline-none focus:!outline-none focus:placeholder:opacity-0 placeholder:transition-opacity placeholder:delay-100 ease-linear ", dir === "ltr" && "text-left placeholder:text-right") }, props, { required: false })));
 };
 export default BaseInput;
 //# sourceMappingURL=BaseInput.js.map

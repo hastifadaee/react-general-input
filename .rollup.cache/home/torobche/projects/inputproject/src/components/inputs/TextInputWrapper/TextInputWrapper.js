@@ -43,11 +43,15 @@ var TextInputWrapper = forwardRef(function (_a, ref) {
     }, [inputValue]);
     return (_jsxs("div", { style: wrapperStyle, className: clsx("rgi-wrapper", className), children: [_jsxs("div", { className: "w-full flex justify-between items-start gap-2 flex-col", children: [label && (_jsx("div", { className: "flex w-full justify-between", children: label && (_jsxs("label", { className: clsx(inputValue || inputFocus || !placeholder
                                 ? "opacity-100"
-                                : " translate-y-8 -translate-x-1  opacity-0 pointer-events-none", "rgi-label"), children: [label, required && _jsx("span", { className: "text-danger-0 rgi-requiredSpan", children: "*" })] })) })), _jsxs("div", { className: clsx(error
+                                : " translate-y-8 -translate-x-1 opacity-0 pointer-events-none", size === "medium"
+                                ? "rgi-mediumLabel"
+                                : size === "small"
+                                    ? "rgi-smallLabel"
+                                    : "rgi-largeLabel", "rgi-label transition-all"), children: [label, required && (_jsx("span", { className: "text-danger-0 rgi-requiredSpan", children: "*" }))] })) })), _jsxs("div", { className: clsx(error
                             ? "shadow-[0px_0px_8px_0px_rgba(221,19,0,0.26)] rgi-errorInput"
                             : "shadow-[0px_0px_8px_0px_rgba(50,49,118,0.16)] rgi-validInput", "transition-transform w-full px-4 py-2 h-[34px] sm:h-12 rounded flex items-center justify-between bg-white relative", !disabled &&
                             !error &&
-                            "hover:shadow-[0px_0px_8px_0px_rgba(50,49,118,0.16),0px_4px_4px_0px_rgba(50,49,118,0.16)] transition-shadow ", disabled && "!bg-neutral-10", "rgi-baseInputBox", size === "small"
+                            "hover:shadow-[0px_0px_8px_0px_rgba(50,49,118,0.16),0px_4px_4px_0px_rgba(50,49,118,0.16)] transition-shadow rgi-hoverInput", disabled && "!bg-neutral-10", "rgi-baseInputBox", size === "small"
                             ? "rgi-baseSmallInputBox"
                             : size === "medium"
                                 ? "rgi-baseMediumInputBox"
@@ -57,7 +61,7 @@ var TextInputWrapper = forwardRef(function (_a, ref) {
                                     ? "text-primary-6"
                                     : "w-[18px] h-[18px] sm:w-8 md:h-8 text-white rounded-[100%]"), children: typeof endIcon === "string" ? null : endIcon })), haveKeyboard && (_jsx(VirtualKeyboard, { handleBackSpace: handleBackSpace, multiLang: multiLangKeyboard, isNumeric: numericKeyboard, keyboardOnChange: keyboardOnChange, isKeyboardShow: isKeyboardShow, setIsKeyboardShow: setIsKeyboardShow }))] })] }), helperText && (_jsxs("p", { className: clsx(error
                     ? "text-danger-0 rgi-errorHelperText"
-                    : "text-neutral-5 rgi-validHelperText", "flex items-center"), children: [_jsx("span", { className: clsx("icon-Danger-Circle1 text-sm ml-2 rgi-helperTextIcon"), children: helperTextIcon }), _jsx("p", { children: helperText.toString() })] }))] }));
+                    : "text-neutral-5 rgi-validHelperText", "flex items-center"), children: [_jsx("span", { className: clsx("icon-Danger-Circle1 text-sm ml-2 rgi-helperTextIcon"), children: helperTextIcon }), _jsx("span", { children: helperText.toString() })] }))] }));
 });
 export default TextInputWrapper;
 //# sourceMappingURL=TextInputWrapper.js.map

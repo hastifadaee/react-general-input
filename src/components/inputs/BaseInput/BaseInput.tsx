@@ -38,7 +38,7 @@ const BaseInput = ({
       }}
       {...(dir === "ltr" ? { dir: "ltr" } : {})}
       className={clsx(
-        "baseInput",
+        "transition-transform outline-none focus:!outline-none focus:placeholder:opacity-0 placeholder:transition-opacity placeholder:delay-100 ease-linear ",
         dir === "ltr" && "text-left placeholder:text-right"
       )}
       {...props}
