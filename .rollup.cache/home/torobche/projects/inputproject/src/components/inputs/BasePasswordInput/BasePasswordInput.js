@@ -25,7 +25,7 @@ var BasePasswordInput = function (_a) {
                     setInputValue(passwordCharChecker(e));
                     onChange === null || onChange === void 0 ? void 0 : onChange(__assign(__assign({}, e), { target: __assign(__assign({}, e.target), { value: passwordCharChecker(e) }) }));
                     rhfRegister === null || rhfRegister === void 0 ? void 0 : rhfRegister.onChange(e);
-                }, inputValue: inputValue, rhfRegister: rhfRegister, iconClickCallBack: iconClickCallBack, setInputFocus: setInputFocus, required: required, name: name, placeholder: placeholder })), _jsx("span", { onClick: function () { return setShowPassword(!showPassword); }, className: clsx(showPassword ? "icon-Eye !text-xl" : "icon-Hide-Password", "rgi-passwordIconClassName", endIcon && "justify-center") })] }));
+                }, inputValue: inputValue, rhfRegister: rhfRegister, iconClickCallBack: iconClickCallBack, setInputFocus: setInputFocus, required: required, name: name, placeholder: placeholder })), _jsx("span", { onClick: function () { return setShowPassword(!showPassword); }, className: clsx(showPassword ? "icon-Eye !text-xl" : "icon-Hide-Password", "rgi-passwordIcon", endIcon && "justify-center") })] }));
 };
 export default BasePasswordInput;
 //# sourceMappingURL=BasePasswordInput.js.map

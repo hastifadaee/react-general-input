@@ -106,7 +106,7 @@ const BasePasswordInput = ({
         onClick={() => setShowPassword(!showPassword)}
         className={clsx(
           showPassword ? "icon-Eye !text-xl" : "icon-Hide-Password",
-          "rgi-passwordIconClassName",
+          "rgi-passwordIcon",
           endIcon && "justify-center"
         )}
       />
