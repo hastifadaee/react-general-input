@@ -1,19 +1,18 @@
 @font-face {
   font-family: "icomoon";
-  src: url("./fontIcons/icomoon.eot?iefix");
-  src: url("./fontIcons/icomoon.eot?iefix#iefix") format("embedded-opentype"),
-    url("./fontIcons/icomoon.ttf?iefix") format("truetype"),
-    url("./fontIcons/icomoon.woff?iefix") format("woff"),
-    url("./fontIcons/icomoon.svg?iefix#icomoon") format("svg");
+  src: url("./fontIcons/icomoon.eot?3quop");
+  src: url("./fontIcons/icomoon.eot?3quop#3quop") format("embedded-opentype"),
+    url("./fontIcons/icomoon.ttf?3quop") format("truetype"),
+    url("./fontIcons/icomoon.woff?3quop") format("woff"),
+    url("./fontIcons/icomoon.svg?3quop#icomoon") format("svg");
   font-weight: normal;
   font-style: normal;
   font-display: block;
 }
 
-[class^="icon-"],
-[class*=" icon-"] {
+[class^="icon-"], [class*=" icon-"] {
   /* use !important to prevent issues with browser extensions that change fonts */
-  font-family: "icomoon" !important;
+  font-family: 'icomoon' !important;
   speak: never;
   font-style: normal;
   font-weight: normal;
@@ -25,12 +24,46 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-.icon-Eye:before {
-  content: "\e934";
+
+.icon-info-circle:before {
+  content: "\e900";
+}
+.icon-Menu-Dots:before {
+  content: "\e970";
+}
+.icon-Phone-Rounded:before {
+  content: "\e950";
+}
+.icon-Trash-Bin-Minimalistic-2:before {
+  content: "\e947";
 }
 .icon-Hide-Password:before {
   content: "\e941";
 }
+.icon-Refresh:before {
+  content: "\e942";
+}
+.icon-Pen-New-Square:before {
+  content: "\e932";
+}
+.icon-Eye:before {
+  content: "\e934";
+}
+.icon-Danger-Circle1:before {
+  content: "\e937";
+}
 .icon-Danger-Triangle:before {
   content: "\e938";
+}
+.icon-Download-Minimalistic:before {
+  content: "\e939";
+}
+.icon-User-Rounded:before {
+  content: "\e901";
+}
+.icon-Check-Circle:before {
+  content: "\e90c";
+}
+.icon-Close-Circle:before {
+  content: "\e90d";
 }

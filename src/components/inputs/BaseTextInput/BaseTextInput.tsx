@@ -19,7 +19,7 @@ const BaseTextInput = ({
   name,
   label,
   iconClickCallBack,
-  helperText = "",
+  helperText = [],
   error = false,
   className,
   endIcon,
@@ -33,6 +33,8 @@ const BaseTextInput = ({
   rhfOptions,
   helperTextIcon,
   size,
+  errorHelperText = "",
+  errorHelperTextIcon,
   ...props
 }: TBaseTextInput) => {
   const [inputValue, setInputValue] = useState<string>(defaultValue ?? "");
@@ -42,6 +44,8 @@ const BaseTextInput = ({
   }, [defaultValue]);
   return (
     <TextInputWrapper
+      errorHelperText={errorHelperText}
+      errorHelperTextIcon={errorHelperTextIcon}
       size={size}
       helperTextIcon={helperTextIcon}
       wrapperStyle={wrapperStyle}

@@ -19,7 +19,7 @@ const BaseNumberInput = ({
   iconClickCallBack,
   className,
   label,
-  helperText = "",
+  helperText = [],
   error = false,
   required = false,
   iconVariant,
@@ -34,6 +34,8 @@ const BaseNumberInput = ({
   rhfOptions,
   helperTextIcon,
   size,
+  errorHelperText = "",
+  errorHelperTextIcon,
   ...props
 }: TBaseNumberInput) => {
   const [inputFocus, setInputFocus] = useState(false);
@@ -47,6 +49,8 @@ const BaseNumberInput = ({
   }, [defaultValue]);
   return (
     <TextInputWrapper
+      errorHelperText={errorHelperText}
+      errorHelperTextIcon={errorHelperTextIcon}
       size={size}
       helperTextIcon={helperTextIcon}
       wrapperStyle={wrapperStyle}
@@ -82,7 +86,7 @@ const BaseNumberInput = ({
         onChange={(e) => {
           const rawValue = removeNonNumeric(e.target.value);
           const formattedValue = thousandSeparate
-            ? thousandSeparator(e)
+            ? thousandSeparator(e.target.value)
             : rawValue;
           setInputValue(formattedValue);
           rhfRegister?.onChange({ target: { name, value: rawValue } });

@@ -46,8 +46,10 @@ export type ErrorText =
 export type TInputBaseType = {
   size?: "small" | "medium" | "large";
   helperTextIcon?: ReactNode | string;
+  errorHelperTextIcon?: ReactNode | string;
   wrapperStyle?: CSSProperties;
-  helperText?: ErrorText;
+  helperText?: string[];
+  errorHelperText?: ErrorText;
   error?: boolean;
   haveKeyboard?: boolean;
   numericKeyboard?: boolean;

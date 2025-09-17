@@ -17,7 +17,7 @@ const BasePasswordInput = ({
   className,
   label,
   passwordStrengthCheck,
-  helperText = "",
+  helperText = [],
   error = false,
   required = false,
   name,
@@ -29,6 +29,8 @@ const BasePasswordInput = ({
   rhfOptions,
   clearErrors,
   helperTextIcon,
+  errorHelperText = "",
+  errorHelperTextIcon,
   passwordStrengthData = [
     { text: "خیلی ضعیف", color: "text-secondary-2" },
     { text: "ضعیف", color: "text-secondary-5" },
@@ -47,6 +49,8 @@ const BasePasswordInput = ({
   };
   return (
     <TextInputWrapper
+      errorHelperText={errorHelperText}
+      errorHelperTextIcon={errorHelperTextIcon}
       size={size}
       helperTextIcon={helperTextIcon}
       wrapperStyle={wrapperStyle}
@@ -75,7 +79,7 @@ const BasePasswordInput = ({
       {inputValue && passwordStrengthCheck && (
         <p
           className={clsx(
-            "rgi-passwordStrengthCheck",
+            "text-[10px] sm:text-xs md:text-sm flex items-center mt-2 absolute top-[-30px] md:top-[-35px] left-0 rgi-passwordStrengthCheck",
             passwordStrengthData[passwordStrength(inputValue).id].color
           )}
         >
@@ -106,7 +110,7 @@ const BasePasswordInput = ({
         onClick={() => setShowPassword(!showPassword)}
         className={clsx(
           showPassword ? "icon-Eye !text-xl" : "icon-Hide-Password",
-          "rgi-passwordIcon",
+          "rgi-passwordIcon inline-flex justify-end items-center text-base cursor-pointer text-primary-6 w-[18px] h-[18px] sm:w-8 sm:h-8 rounded-[100%] ",
           endIcon && "justify-center"
         )}
       />

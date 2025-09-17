@@ -35,6 +35,8 @@ const TextInputWrapper = forwardRef(
       clearErrors,
       rhfOptions,
       helperTextIcon,
+      errorHelperText,
+      errorHelperTextIcon,
       size = "medium",
     }: TTextInputWrapper,
     ref: any
@@ -73,7 +75,9 @@ const TextInputWrapper = forwardRef(
       );
     }, [defaultValue]);
     useEffect(() => {
-      rhfRegister?.name && setValue?.(rhfRegister?.name, inputValue);
+      if (!thousandSeparate) {
+        rhfRegister?.name && setValue?.(rhfRegister?.name, inputValue);
+      }
     }, [inputValue]);
     return (
       <div style={wrapperStyle} className={clsx("rgi-wrapper", className)}>
@@ -93,7 +97,7 @@ const TextInputWrapper = forwardRef(
                       : size === "small"
                       ? "rgi-smallLabel"
                       : "rgi-largeLabel",
-                      "rgi-label transition-all"
+                    "rgi-label !text-neutral-2 transition-all relative text-[10px] sm:text-xs md:text-sm"
                   )}
                 >
                   {label}
@@ -113,7 +117,7 @@ const TextInputWrapper = forwardRef(
               !disabled &&
                 !error &&
                 "hover:shadow-[0px_0px_8px_0px_rgba(50,49,118,0.16),0px_4px_4px_0px_rgba(50,49,118,0.16)] transition-shadow rgi-hoverInput",
-              disabled && "!bg-neutral-10",
+              disabled && "!bg-neutral-10 rgi-disabledInput",
               "rgi-baseInputBox",
               size === "small"
                 ? "rgi-baseSmallInputBox"
@@ -163,25 +167,55 @@ const TextInputWrapper = forwardRef(
             )}
           </div>
         </div>
-        {helperText && (
+        {errorHelperText && (
           <p
             className={clsx(
-              error
-                ? "text-danger-0 rgi-errorHelperText"
-                : "text-neutral-5 rgi-validHelperText",
-              "flex items-center"
+              "text-danger-0 rgi-errorHelperText text-xs flex items-center mt-2",
+              "flex items-center",
+              helperText?.length && "mb-1"
             )}
           >
             <span
               className={clsx(
-                "icon-Danger-Circle1 text-sm ml-2 rgi-helperTextIcon"
+                "text-base ml-1 rgi-errorHelperTextIcon",
+                errorHelperTextIcon ? "" : "icon-Danger-Triangle"
               )}
             >
-              {helperTextIcon}
+              {errorHelperTextIcon}
             </span>
-            <span>{helperText.toString()}</span>
+            <span>{errorHelperText.toString()}</span>
           </p>
         )}
+        {helperText?.length ? (
+          <div
+            className={clsx(
+              "flex items-start justify-center flex-col gap-1 rgi-validHelperTextGroup",
+              errorHelperText ? "mt-0" : "mt-1"
+            )}
+          >
+            {helperText.map((item, index) => {
+              return (
+                <p
+                  key={index}
+                  className={clsx(
+                    "text-neutral-5 text-xs flex items-center rgi-validHelperText",
+                    "flex items-center"
+                  )}
+                >
+                  <span
+                    className={clsx(
+                      "text-base ml-1 rgi-helperTextIcon",
+                      helperTextIcon ? "" : "icon-info-circle"
+                    )}
+                  >
+                    {helperTextIcon}
+                  </span>
+                  <span>{item.toString()}</span>
+                </p>
+              );
+            })}
+          </div>
+        ) : null}
       </div>
     );
   }
