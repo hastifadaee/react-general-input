@@ -31,11 +31,28 @@ const BasePasswordInput = ({
   helperTextIcon,
   errorHelperText = "",
   errorHelperTextIcon,
+  passwordIcon,
   passwordStrengthData = [
-    { text: "خیلی ضعیف", color: "text-secondary-2" },
-    { text: "ضعیف", color: "text-secondary-5" },
-    { text: "متوسط", color: "text-lowLevel-0" },
-    { text: "قوی", color: "text-success-0" },
+    {
+      text: "خیلی ضعیف",
+      textColor: "!text-secondary-2",
+      borderColor: "!border-secondary-2",
+    },
+    {
+      text: "ضعیف",
+      textColor: "!text-secondary-5",
+      borderColor: "!border-secondary-5",
+    },
+    {
+      text: "متوسط",
+      textColor: "!text-lowLevel-0",
+      borderColor: "!border-lowLevel-0",
+    },
+    {
+      text: "قوی",
+      textColor: "!text-success-0",
+      borderColor: "!border-success-0",
+    },
   ],
   size,
   ...props
@@ -49,6 +66,12 @@ const BasePasswordInput = ({
   };
   return (
     <TextInputWrapper
+      passwordStrengthCheckStyle={clsx(
+        inputValue &&
+          passwordStrengthCheck &&
+          passwordStrengthData[passwordStrength(inputValue).id].borderColor
+      )}
+      passwordStrengthCheck={(inputValue && passwordStrengthCheck) as boolean}
       errorHelperText={errorHelperText}
       errorHelperTextIcon={errorHelperTextIcon}
       size={size}
@@ -80,7 +103,7 @@ const BasePasswordInput = ({
         <p
           className={clsx(
             "text-[10px] sm:text-xs md:text-sm flex items-center mt-2 absolute top-[-30px] md:top-[-35px] left-0 rgi-passwordStrengthCheck",
-            passwordStrengthData[passwordStrength(inputValue).id].color
+            passwordStrengthData[passwordStrength(inputValue).id].textColor
           )}
         >
           {passwordStrengthData[passwordStrength(inputValue).id]?.text}
@@ -109,11 +132,13 @@ const BasePasswordInput = ({
       <span
         onClick={() => setShowPassword(!showPassword)}
         className={clsx(
-          showPassword ? "icon-Eye !text-xl" : "icon-Hide-Password",
+          showPassword ? "icon-eye !text-xl" : "icon-eye-off",
           "rgi-passwordIcon inline-flex justify-end items-center text-base cursor-pointer text-primary-6 w-[18px] h-[18px] sm:w-8 sm:h-8 rounded-[100%] ",
           endIcon && "justify-center"
         )}
-      />
+      >
+        {passwordIcon}
+      </span>
     </TextInputWrapper>
   );
 };

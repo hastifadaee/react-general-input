@@ -64,6 +64,8 @@ export type TInputBaseType = {
 } & TGeneralInputType;
 
 export type TTextInputWrapper = {
+  passwordStrengthCheck?: boolean;
+  passwordStrengthCheckStyle?: string;
   defaultValue?: string;
   inputFocus: boolean;
   disabled?: boolean;
@@ -86,7 +88,12 @@ export type TBaseTextInput = {
 
 export type TPasswordInput = {
   passwordStrengthCheck?: boolean;
-  passwordStrengthData?: { text: string; color: string }[];
+  passwordIcon?: ReactNode;
+  passwordStrengthData?: {
+    text: string;
+    textColor: string;
+    borderColor: string;
+  }[];
 } & TInputBaseType;
 
 export type TBaseNumberInput = {

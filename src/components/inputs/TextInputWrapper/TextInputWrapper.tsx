@@ -38,6 +38,8 @@ const TextInputWrapper = forwardRef(
       errorHelperText,
       errorHelperTextIcon,
       size = "medium",
+      passwordStrengthCheckStyle,
+      passwordStrengthCheck,
     }: TTextInputWrapper,
     ref: any
   ) => {
@@ -97,7 +99,8 @@ const TextInputWrapper = forwardRef(
                       : size === "small"
                       ? "rgi-smallLabel"
                       : "rgi-largeLabel",
-                    "rgi-label !text-neutral-2 transition-all relative text-[10px] sm:text-xs md:text-sm"
+                    "text-neutral-2 transition-all relative text-[10px] sm:text-xs md:text-sm ",
+                    "rgi-label"
                   )}
                 >
                   {label}
@@ -110,20 +113,37 @@ const TextInputWrapper = forwardRef(
           )}
           <div
             className={clsx(
-              error
+              !disabled && "rgi-baseInputBox",
+              passwordStrengthCheck
+                ? passwordStrengthCheckStyle
+                : error
                 ? "shadow-[0px_0px_8px_0px_rgba(221,19,0,0.26)] rgi-errorInput"
                 : "shadow-[0px_0px_8px_0px_rgba(50,49,118,0.16)] rgi-validInput",
-              "transition-transform w-full px-4 py-2 h-[34px] sm:h-12 rounded flex items-center justify-between bg-white relative",
+              // passwordStrengthCheck && passwordStrengthCheckStyle,
+              "transition-transform w-full h-[34px] sm:h-12 rounded flex items-center justify-between bg-white relative",
               !disabled &&
                 !error &&
                 "hover:shadow-[0px_0px_8px_0px_rgba(50,49,118,0.16),0px_4px_4px_0px_rgba(50,49,118,0.16)] transition-shadow rgi-hoverInput",
-              disabled && "!bg-neutral-10 rgi-disabledInput",
-              "rgi-baseInputBox",
+              disabled && "bg-neutral-10 rgi-disabledInput",
               size === "small"
                 ? "rgi-baseSmallInputBox"
                 : size === "medium"
                 ? "rgi-baseMediumInputBox"
-                : "rgi-baseLargeInputBox"
+                : "rgi-baseLargeInputBox",
+              startIcon
+                ? size === "small"
+                  ? "!pr-1"
+                  : size === "medium"
+                  ? "!pr-[6px]"
+                  : "!pr-[8px]"
+                : "",
+              endIcon
+                ? size === "small"
+                  ? "!pl-1"
+                  : size === "medium"
+                  ? "!pl-[6px]"
+                  : "!pl-[8px]"
+                : ""
             )}
           >
             {startIcon && (
@@ -178,7 +198,7 @@ const TextInputWrapper = forwardRef(
             <span
               className={clsx(
                 "text-base ml-1 rgi-errorHelperTextIcon",
-                errorHelperTextIcon ? "" : "icon-Danger-Triangle"
+                errorHelperTextIcon ? "" : "icon-alert-triangle"
               )}
             >
               {errorHelperTextIcon}
