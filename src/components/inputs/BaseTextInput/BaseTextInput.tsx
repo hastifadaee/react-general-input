@@ -35,6 +35,7 @@ const BaseTextInput = ({
   size,
   errorHelperText = "",
   errorHelperTextIcon,
+  baseInputBoxClassName,
   ...props
 }: TBaseTextInput) => {
   const [inputValue, setInputValue] = useState<string>(defaultValue ?? "");
@@ -44,6 +45,7 @@ const BaseTextInput = ({
   }, [defaultValue]);
   return (
     <TextInputWrapper
+      baseInputBoxClassName={baseInputBoxClassName}
       errorHelperText={errorHelperText}
       errorHelperTextIcon={errorHelperTextIcon}
       size={size}

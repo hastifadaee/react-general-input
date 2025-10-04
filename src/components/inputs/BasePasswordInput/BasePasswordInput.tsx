@@ -32,6 +32,7 @@ const BasePasswordInput = ({
   errorHelperText = "",
   errorHelperTextIcon,
   passwordIcon,
+  baseInputBoxClassName,
   passwordStrengthData = [
     {
       text: "خیلی ضعیف",
@@ -66,6 +67,7 @@ const BasePasswordInput = ({
   };
   return (
     <TextInputWrapper
+      baseInputBoxClassName={baseInputBoxClassName}
       passwordStrengthCheckStyle={clsx(
         inputValue &&
           passwordStrengthCheck &&

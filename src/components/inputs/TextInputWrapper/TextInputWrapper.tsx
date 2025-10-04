@@ -37,9 +37,10 @@ const TextInputWrapper = forwardRef(
       helperTextIcon,
       errorHelperText,
       errorHelperTextIcon,
-      size = "medium",
+      size,
       passwordStrengthCheckStyle,
       passwordStrengthCheck,
+      baseInputBoxClassName,
     }: TTextInputWrapper,
     ref: any
   ) => {
@@ -94,11 +95,13 @@ const TextInputWrapper = forwardRef(
                     inputValue || inputFocus || !placeholder
                       ? "opacity-100"
                       : " translate-y-8 -translate-x-1 opacity-0 pointer-events-none",
-                    size === "medium"
-                      ? "rgi-mediumLabel"
-                      : size === "small"
-                      ? "rgi-smallLabel"
-                      : "rgi-largeLabel",
+                    size
+                      ? size === "medium"
+                        ? "rgi-mediumLabel"
+                        : size === "small"
+                        ? "rgi-smallLabel"
+                        : "rgi-largeLabel"
+                      : "rgi-labelSizes",
                     "text-neutral-2 transition-all relative text-[10px] sm:text-xs md:text-sm ",
                     "rgi-label"
                   )}
@@ -113,6 +116,7 @@ const TextInputWrapper = forwardRef(
           )}
           <div
             className={clsx(
+              baseInputBoxClassName,
               !disabled && "rgi-baseInputBox",
               passwordStrengthCheck
                 ? passwordStrengthCheckStyle
@@ -125,24 +129,30 @@ const TextInputWrapper = forwardRef(
                 !error &&
                 "hover:shadow-[0px_0px_8px_0px_rgba(50,49,118,0.16),0px_4px_4px_0px_rgba(50,49,118,0.16)] transition-shadow rgi-hoverInput",
               disabled && "bg-neutral-10 rgi-disabledInput",
-              size === "small"
-                ? "rgi-baseSmallInputBox"
-                : size === "medium"
-                ? "rgi-baseMediumInputBox"
-                : "rgi-baseLargeInputBox",
-              startIcon
+              size
                 ? size === "small"
-                  ? "!pr-1"
+                  ? "rgi-baseSmallInputBox"
                   : size === "medium"
-                  ? "!pr-[6px]"
-                  : "!pr-[8px]"
+                  ? "rgi-baseMediumInputBox"
+                  : "rgi-baseLargeInputBox"
+                : "rgi-baseInputBoxSizes",
+              startIcon
+                ? size
+                  ? size === "small"
+                    ? "!pr-1"
+                    : size === "medium"
+                    ? "!pr-[6px]"
+                    : "!pr-[8px]"
+                  : "min-[1024px]:!pr-[8px] !pr-[6px]"
                 : "",
               endIcon
-                ? size === "small"
-                  ? "!pl-1"
-                  : size === "medium"
-                  ? "!pl-[6px]"
-                  : "!pl-[8px]"
+                ? size
+                  ? size === "small"
+                    ? "!pl-1"
+                    : size === "medium"
+                    ? "!pl-[6px]"
+                    : "!pl-[8px]"
+                  : "min-[1024px]:!pl-[8px] !pl-[6px]"
                 : ""
             )}
           >

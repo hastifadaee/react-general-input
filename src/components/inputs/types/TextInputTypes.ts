@@ -44,6 +44,7 @@ export type ErrorText =
   | Merge<FieldError, FieldErrorsImpl<any>>;
 
 export type TInputBaseType = {
+  baseInputBoxClassName?: string;
   size?: "small" | "medium" | "large";
   helperTextIcon?: ReactNode | string;
   errorHelperTextIcon?: ReactNode | string;
