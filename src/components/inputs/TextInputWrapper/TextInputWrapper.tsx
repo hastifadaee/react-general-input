@@ -91,6 +91,7 @@ const TextInputWrapper = forwardRef(
             <div className="flex w-full justify-between">
               {label && (
                 <label
+                
                   className={clsx(
                     inputValue || inputFocus || !placeholder
                       ? "opacity-100"
