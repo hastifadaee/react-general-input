@@ -7,8 +7,8 @@ import { addCommas } from "@/utils/addCommas";
 import { removeNonNumeric } from "@/utils/removeNonNumeric";
 import VirtualKeyboard from "@/components/VirtualKeyboard/VirtualKeyboard";
 var TextInputWrapper = forwardRef(function (_a, ref) {
-    var _b = _a.defaultValue, defaultValue = _b === void 0 ? "" : _b, label = _a.label, placeholder = _a.placeholder, _c = _a.required, required = _c === void 0 ? false : _c, helperText = _a.helperText, _d = _a.error, error = _d === void 0 ? false : _d, _e = _a.disabled, disabled = _e === void 0 ? false : _e, iconClickCallBack = _a.iconClickCallBack, startIcon = _a.startIcon, endIcon = _a.endIcon, iconVariant = _a.iconVariant, className = _a.className, _f = _a.haveKeyboard, haveKeyboard = _f === void 0 ? false : _f, _g = _a.numericKeyboard, numericKeyboard = _g === void 0 ? false : _g, _h = _a.multiLangKeyboard, multiLangKeyboard = _h === void 0 ? false : _h, children = _a.children, setInputValue = _a.setInputValue, inputValue = _a.inputValue, inputFocus = _a.inputFocus, thousandSeparate = _a.thousandSeparate, setValue = _a.setValue, rhfRegister = _a.rhfRegister, wrapperStyle = _a.wrapperStyle, clearErrors = _a.clearErrors, rhfOptions = _a.rhfOptions, helperTextIcon = _a.helperTextIcon, errorHelperText = _a.errorHelperText, errorHelperTextIcon = _a.errorHelperTextIcon, size = _a.size, passwordStrengthCheckStyle = _a.passwordStrengthCheckStyle, passwordStrengthCheck = _a.passwordStrengthCheck, baseInputBoxClassName = _a.baseInputBoxClassName;
-    var _j = __read(useState(false), 2), isKeyboardShow = _j[0], setIsKeyboardShow = _j[1];
+    var _b = _a.defaultValue, defaultValue = _b === void 0 ? "" : _b, label = _a.label, placeholder = _a.placeholder, _c = _a.required, required = _c === void 0 ? false : _c, helperText = _a.helperText, _d = _a.error, error = _d === void 0 ? false : _d, _e = _a.disabled, disabled = _e === void 0 ? false : _e, iconClickCallBack = _a.iconClickCallBack, startIcon = _a.startIcon, endIcon = _a.endIcon, iconVariant = _a.iconVariant, className = _a.className, _f = _a.haveKeyboard, haveKeyboard = _f === void 0 ? false : _f, _g = _a.numericKeyboard, numericKeyboard = _g === void 0 ? false : _g, _h = _a.multiLangKeyboard, multiLangKeyboard = _h === void 0 ? false : _h, children = _a.children, setInputValue = _a.setInputValue, inputValue = _a.inputValue, inputFocus = _a.inputFocus, thousandSeparate = _a.thousandSeparate, setValue = _a.setValue, rhfRegister = _a.rhfRegister, wrapperStyle = _a.wrapperStyle, clearErrors = _a.clearErrors, rhfOptions = _a.rhfOptions, helperTextIcon = _a.helperTextIcon, errorHelperText = _a.errorHelperText, errorHelperTextIcon = _a.errorHelperTextIcon, size = _a.size, passwordStrengthCheckStyle = _a.passwordStrengthCheckStyle, passwordStrengthCheck = _a.passwordStrengthCheck, baseInputBoxClassName = _a.baseInputBoxClassName, _j = _a.isPassword, isPassword = _j === void 0 ? false : _j;
+    var _k = __read(useState(false), 2), isKeyboardShow = _k[0], setIsKeyboardShow = _k[1];
     var inputSetter = function (input) {
         var _a;
         var validated = rhfOptions === null || rhfOptions === void 0 ? void 0 : rhfOptions.validate;
@@ -72,7 +72,7 @@ var TextInputWrapper = forwardRef(function (_a, ref) {
                                     : size === "medium"
                                         ? "!pr-[6px]"
                                         : "!pr-[8px]"
-                                : "min-[1024px]:!pr-[8px] !pr-[6px]"
+                                : "!pr-[4px] lg:!pr-[6px]"
                             : "", endIcon
                             ? size
                                 ? size === "small"
@@ -80,7 +80,15 @@ var TextInputWrapper = forwardRef(function (_a, ref) {
                                     : size === "medium"
                                         ? "!pl-[6px]"
                                         : "!pl-[8px]"
-                                : "min-[1024px]:!pl-[8px] !pl-[6px]"
+                                : "!pl-[4px] lg:!pl-[6px] "
+                            : "", isPassword
+                            ? size
+                                ? size === "small"
+                                    ? "!pl-1"
+                                    : size === "medium"
+                                        ? "!pl-[6px]"
+                                        : "!pl-[8px]"
+                                : "!pl-[4px] lg:!pl-[6px]"
                             : ""), children: [startIcon && (_jsx("span", { onClick: function () { return iconClickCallBack === null || iconClickCallBack === void 0 ? void 0 : iconClickCallBack(inputValue); }, className: clsx("inline-flex justify-center items-center text-base sm:text-2xl ml-2 cursor-pointer", startIcon, iconVariant == "outlined"
                                     ? "text-primary-6"
                                     : "w-[18px] h-[18px] md:w-8 md:h-8 text-white rounded-[100%]"), children: typeof startIcon === "string" ? null : startIcon })), children, endIcon && (_jsx("span", { onClick: function () { return iconClickCallBack === null || iconClickCallBack === void 0 ? void 0 : iconClickCallBack(inputValue); }, className: clsx("inline-flex justify-center items-center text-base sm:text-2xl cursor-pointer ", endIcon, iconVariant == "outlined"

@@ -6,6 +6,7 @@ import { removeNonNumeric } from "@/utils/removeNonNumeric";
 import VirtualKeyboard from "@/components/VirtualKeyboard/VirtualKeyboard";
 import { TTextInputWrapper } from "../types/TextInputTypes";
 
+
 const TextInputWrapper = forwardRef(
   (
     {
@@ -41,6 +42,7 @@ const TextInputWrapper = forwardRef(
       passwordStrengthCheckStyle,
       passwordStrengthCheck,
       baseInputBoxClassName,
+      isPassword = false,
     }: TTextInputWrapper,
     ref: any
   ) => {
@@ -91,7 +93,6 @@ const TextInputWrapper = forwardRef(
             <div className="flex w-full justify-between">
               {label && (
                 <label
-                
                   className={clsx(
                     inputValue || inputFocus || !placeholder
                       ? "opacity-100"
@@ -144,7 +145,7 @@ const TextInputWrapper = forwardRef(
                     : size === "medium"
                     ? "!pr-[6px]"
                     : "!pr-[8px]"
-                  : "min-[1024px]:!pr-[8px] !pr-[6px]"
+                  : "!pr-[4px] lg:!pr-[6px]"
                 : "",
               endIcon
                 ? size
@@ -153,7 +154,16 @@ const TextInputWrapper = forwardRef(
                     : size === "medium"
                     ? "!pl-[6px]"
                     : "!pl-[8px]"
-                  : "min-[1024px]:!pl-[8px] !pl-[6px]"
+                  : "!pl-[4px] lg:!pl-[6px] "
+                : "",
+              isPassword
+                ? size
+                  ? size === "small"
+                    ? "!pl-1"
+                    : size === "medium"
+                    ? "!pl-[6px]"
+                    : "!pl-[8px]"
+                  : "!pl-[4px] lg:!pl-[6px]"
                 : ""
             )}
           >

@@ -65,6 +65,7 @@ export type TInputBaseType = {
 } & TGeneralInputType;
 
 export type TTextInputWrapper = {
+  isPassword?:boolean;
   passwordStrengthCheck?: boolean;
   passwordStrengthCheckStyle?: string;
   defaultValue?: string;

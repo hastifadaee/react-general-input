@@ -67,6 +67,7 @@ const BasePasswordInput = ({
   };
   return (
     <TextInputWrapper
+    isPassword={true}
       baseInputBoxClassName={baseInputBoxClassName}
       passwordStrengthCheckStyle={clsx(
         inputValue &&
