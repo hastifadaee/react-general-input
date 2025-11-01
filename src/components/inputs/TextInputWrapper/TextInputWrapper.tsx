@@ -6,7 +6,6 @@ import { removeNonNumeric } from "@/utils/removeNonNumeric";
 import VirtualKeyboard from "@/components/VirtualKeyboard/VirtualKeyboard";
 import { TTextInputWrapper } from "../types/TextInputTypes";
 
-
 const TextInputWrapper = forwardRef(
   (
     {
@@ -171,11 +170,16 @@ const TextInputWrapper = forwardRef(
               <span
                 onClick={() => iconClickCallBack?.(inputValue)}
                 className={clsx(
-                  "inline-flex justify-center items-center text-base sm:text-2xl ml-2 cursor-pointer",
+                  "inline-flex justify-center items-center ml-2 cursor-pointer",
                   startIcon,
+                  typeof startIcon === "string"
+                    ? " text-base sm:text-2xl"
+                    : "h-full",
                   iconVariant == "outlined"
                     ? "text-primary-6"
-                    : "w-[18px] h-[18px] md:w-8 md:h-8 text-white rounded-[100%]"
+                    : typeof endIcon === "string"
+                    ? "w-[18px] h-[18px] md:w-8 md:h-8 text-white rounded-[100%]"
+                    : ""
                 )}
               >
                 {typeof startIcon === "string" ? null : startIcon}
@@ -186,11 +190,16 @@ const TextInputWrapper = forwardRef(
               <span
                 onClick={() => iconClickCallBack?.(inputValue)}
                 className={clsx(
-                  "inline-flex justify-center items-center text-base sm:text-2xl cursor-pointer ",
+                  "inline-flex justify-center items-center cursor-pointer ",
                   endIcon,
+                  typeof endIcon === "string"
+                    ? "text-base sm:text-2xl "
+                    : "h-full",
                   iconVariant == "outlined"
                     ? "text-primary-6"
-                    : "w-[18px] h-[18px] sm:w-8 md:h-8 text-white rounded-[100%]"
+                    : typeof endIcon === "string"
+                    ? "w-[18px] h-[18px] sm:w-8 md:h-8 text-white rounded-[100%]"
+                    : null
                 )}
               >
                 {typeof endIcon === "string" ? null : endIcon}

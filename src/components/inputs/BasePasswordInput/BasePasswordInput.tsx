@@ -135,7 +135,7 @@ const BasePasswordInput = ({
       <span
         onClick={() => setShowPassword(!showPassword)}
         className={clsx(
-          showPassword ? "icon-eye !text-xl" : "icon-eye-off",
+          showPassword ? "icon-eye text-xl" : "icon-eye-off",
           "rgi-passwordIcon inline-flex justify-end items-center text-base cursor-pointer text-primary-6 w-[18px] h-[18px] sm:w-8 sm:h-8 rounded-[100%] ",
           endIcon && "justify-center"
         )}

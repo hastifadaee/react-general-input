@@ -43,7 +43,7 @@ var BasePasswordInput = function (_a) {
                     setInputValue(passwordCharChecker(e));
                     onChange === null || onChange === void 0 ? void 0 : onChange(__assign(__assign({}, e), { target: __assign(__assign({}, e.target), { value: passwordCharChecker(e) }) }));
                     rhfRegister === null || rhfRegister === void 0 ? void 0 : rhfRegister.onChange(e);
-                }, inputValue: inputValue, rhfRegister: rhfRegister, iconClickCallBack: iconClickCallBack, setInputFocus: setInputFocus, required: required, name: name, placeholder: placeholder })), _jsx("span", { onClick: function () { return setShowPassword(!showPassword); }, className: clsx(showPassword ? "icon-eye !text-xl" : "icon-eye-off", "rgi-passwordIcon inline-flex justify-end items-center text-base cursor-pointer text-primary-6 w-[18px] h-[18px] sm:w-8 sm:h-8 rounded-[100%] ", endIcon && "justify-center"), children: passwordIcon })] }));
+                }, inputValue: inputValue, rhfRegister: rhfRegister, iconClickCallBack: iconClickCallBack, setInputFocus: setInputFocus, required: required, name: name, placeholder: placeholder })), _jsx("span", { onClick: function () { return setShowPassword(!showPassword); }, className: clsx(showPassword ? "icon-eye text-xl" : "icon-eye-off", "rgi-passwordIcon inline-flex justify-end items-center text-base cursor-pointer text-primary-6 w-[18px] h-[18px] sm:w-8 sm:h-8 rounded-[100%] ", endIcon && "justify-center"), children: passwordIcon })] }));
 };
 export default BasePasswordInput;
 //# sourceMappingURL=BasePasswordInput.js.map
