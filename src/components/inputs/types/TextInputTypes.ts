@@ -44,6 +44,7 @@ export type ErrorText =
   | Merge<FieldError, FieldErrorsImpl<any>>;
 
 export type TInputBaseType = {
+  labelClassName?: string;
   baseInputBoxClassName?: string;
   size?: "small" | "medium" | "large";
   helperTextIcon?: ReactNode | string;
@@ -65,7 +66,7 @@ export type TInputBaseType = {
 } & TGeneralInputType;
 
 export type TTextInputWrapper = {
-  isPassword?:boolean;
+  isPassword?: boolean;
   passwordStrengthCheck?: boolean;
   passwordStrengthCheckStyle?: string;
   defaultValue?: string;

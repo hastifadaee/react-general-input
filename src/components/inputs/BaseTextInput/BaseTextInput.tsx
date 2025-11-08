@@ -36,6 +36,7 @@ const BaseTextInput = ({
   errorHelperText = "",
   errorHelperTextIcon,
   baseInputBoxClassName,
+  labelClassName,
   ...props
 }: TBaseTextInput) => {
   const [inputValue, setInputValue] = useState<string>(defaultValue ?? "");
@@ -74,6 +75,7 @@ const BaseTextInput = ({
       setValue={setValue}
       clearErrors={clearErrors}
       rhfOptions={rhfOptions}
+      labelClassName={labelClassName}
     >
       <BaseInput
         {...props}
