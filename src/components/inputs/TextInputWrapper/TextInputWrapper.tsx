@@ -262,7 +262,7 @@ const TextInputWrapper = forwardRef(
                   >
                     {helperTextIcon}
                   </span>
-                  <span>{item.toString()}</span>
+                  <span>{item}</span>
                 </p>
               );
             })}

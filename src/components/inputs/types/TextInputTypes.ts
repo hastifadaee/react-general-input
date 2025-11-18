@@ -50,7 +50,7 @@ export type TInputBaseType = {
   helperTextIcon?: ReactNode | string;
   errorHelperTextIcon?: ReactNode | string;
   wrapperStyle?: CSSProperties;
-  helperText?: string[];
+  helperText?: ReactNode[];
   errorHelperText?: ErrorText;
   error?: boolean;
   haveKeyboard?: boolean;
