@@ -13,6 +13,8 @@ const BaseInput = ({
   inputValue,
   setInputFocus,
   thousandSeparate,
+  required,
+  placeholder,
   ...props
 }: TBaseInput) => {
   return (
@@ -42,6 +44,7 @@ const BaseInput = ({
         dir === "ltr" && "text-left placeholder:text-right"
       )}
       {...props}
+      placeholder={required ? placeholder + "*" : placeholder}
       required={false}
     />
   );

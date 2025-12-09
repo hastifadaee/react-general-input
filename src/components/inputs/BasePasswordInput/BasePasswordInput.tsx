@@ -116,6 +116,7 @@ const BasePasswordInput = ({
       )}
       <BaseInput
         {...props}
+        required={required}
         type={showPassword ? "text" : "password"}
         onChange={(e) => {
           rhfRegister?.onChange(e);
@@ -130,7 +131,6 @@ const BasePasswordInput = ({
         rhfRegister={rhfRegister}
         iconClickCallBack={iconClickCallBack}
         setInputFocus={setInputFocus}
-        required={required}
         name={name}
         placeholder={placeholder}
       />

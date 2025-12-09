@@ -85,6 +85,7 @@ const BaseNumberInput = ({
     >
       <BaseInput
         {...props}
+        required={required}
         type={thousandSeparate ? "text" : "number"}
         inputValue={inputValue}
         onChange={(e) => {

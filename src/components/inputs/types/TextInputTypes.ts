@@ -44,6 +44,7 @@ export type ErrorText =
   | Merge<FieldError, FieldErrorsImpl<any>>;
 
 export type TInputBaseType = {
+  required?: boolean;
   labelClassName?: string;
   baseInputBoxClassName?: string;
   size?: "small" | "medium" | "large";

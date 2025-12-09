@@ -17,7 +17,9 @@
     "jsx": "react-jsx",
     "noImplicitAny": false,
     "incremental": true,
+    "typeRoots": ["./node_modules/@types", "./src/types"],
     "baseUrl": ".", // Root of the project
+    "ignoreDeprecations": "6.0",
     "paths": {
       "@/*": ["src/*"] // Alias @ to resolve to src
     }

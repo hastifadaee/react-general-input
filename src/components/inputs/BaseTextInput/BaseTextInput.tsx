@@ -79,6 +79,7 @@ const BaseTextInput = ({
     >
       <BaseInput
         {...props}
+        required={required}
         inputValue={inputValue}
         onChange={(e) => {
           rhfRegister?.onChange(e);
