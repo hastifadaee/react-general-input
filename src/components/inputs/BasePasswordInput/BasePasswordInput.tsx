@@ -1,3 +1,4 @@
+"use client";
 import { useState } from "react";
 import { TPasswordInput } from "../types/TextInputTypes";
 import clsx from "clsx";
@@ -32,7 +33,6 @@ const BasePasswordInput = ({
   errorHelperText = "",
   errorHelperTextIcon,
   passwordIcon,
-  baseInputBoxClassName,
   passwordStrengthData = [
     {
       text: "خیلی ضعیف",
@@ -56,7 +56,6 @@ const BasePasswordInput = ({
     },
   ],
   size,
-  labelClassName,
   ...props
 }: TPasswordInput) => {
   const [inputFocus, setInputFocus] = useState(false);
@@ -69,7 +68,6 @@ const BasePasswordInput = ({
   return (
     <TextInputWrapper
       isPassword={true}
-      baseInputBoxClassName={baseInputBoxClassName}
       passwordStrengthCheckStyle={clsx(
         inputValue &&
           passwordStrengthCheck &&
@@ -102,7 +100,6 @@ const BasePasswordInput = ({
       startIcon={startIcon}
       clearErrors={clearErrors}
       rhfOptions={rhfOptions}
-      labelClassName={labelClassName}
     >
       {inputValue && passwordStrengthCheck && (
         <p

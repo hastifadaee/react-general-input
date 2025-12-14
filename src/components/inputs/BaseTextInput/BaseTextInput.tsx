@@ -1,3 +1,4 @@
+"use client";
 import { useEffect, useState } from "react";
 import BaseInput from "../BaseInput/BaseInput";
 import { TBaseTextInput } from "../types/TextInputTypes";
@@ -35,8 +36,6 @@ const BaseTextInput = ({
   size,
   errorHelperText = "",
   errorHelperTextIcon,
-  baseInputBoxClassName,
-  labelClassName,
   ...props
 }: TBaseTextInput) => {
   const [inputValue, setInputValue] = useState<string>(defaultValue ?? "");
@@ -46,7 +45,6 @@ const BaseTextInput = ({
   }, [defaultValue]);
   return (
     <TextInputWrapper
-      baseInputBoxClassName={baseInputBoxClassName}
       errorHelperText={errorHelperText}
       errorHelperTextIcon={errorHelperTextIcon}
       size={size}
@@ -75,7 +73,6 @@ const BaseTextInput = ({
       setValue={setValue}
       clearErrors={clearErrors}
       rhfOptions={rhfOptions}
-      labelClassName={labelClassName}
     >
       <BaseInput
         {...props}

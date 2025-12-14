@@ -45,8 +45,6 @@ export type ErrorText =
 
 export type TInputBaseType = {
   required?: boolean;
-  labelClassName?: string;
-  baseInputBoxClassName?: string;
   size?: "small" | "medium" | "large";
   helperTextIcon?: ReactNode | string;
   errorHelperTextIcon?: ReactNode | string;

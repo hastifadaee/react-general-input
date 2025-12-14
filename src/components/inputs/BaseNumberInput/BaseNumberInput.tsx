@@ -1,3 +1,4 @@
+"use client";
 import BaseInput from "../BaseInput/BaseInput";
 import { TBaseNumberInput } from "../types/TextInputTypes";
 import { useEffect, useState } from "react";
@@ -36,8 +37,6 @@ const BaseNumberInput = ({
   size,
   errorHelperText = "",
   errorHelperTextIcon,
-  baseInputBoxClassName,
-  labelClassName,
   ...props
 }: TBaseNumberInput) => {
   const [inputFocus, setInputFocus] = useState(false);
@@ -80,8 +79,6 @@ const BaseNumberInput = ({
       thousandSeparate={thousandSeparate}
       clearErrors={clearErrors}
       rhfOptions={rhfOptions}
-      baseInputBoxClassName={baseInputBoxClassName}
-      labelClassName={labelClassName}
     >
       <BaseInput
         {...props}

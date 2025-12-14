@@ -40,9 +40,7 @@ const TextInputWrapper = forwardRef(
       size,
       passwordStrengthCheckStyle,
       passwordStrengthCheck,
-      baseInputBoxClassName,
       isPassword = false,
-      labelClassName,
     }: TTextInputWrapper,
     ref: any
   ) => {
@@ -106,7 +104,6 @@ const TextInputWrapper = forwardRef(
                       : "rgi-labelSizes",
                     "text-neutral-2 transition-all relative text-[10px] sm:text-xs md:text-sm ",
                     "rgi-label",
-                    labelClassName
                   )}
                 >
                   {label}
@@ -119,7 +116,6 @@ const TextInputWrapper = forwardRef(
           )}
           <div
             className={clsx(
-              baseInputBoxClassName,
               !disabled && "rgi-baseInputBox",
               passwordStrengthCheck
                 ? passwordStrengthCheckStyle
