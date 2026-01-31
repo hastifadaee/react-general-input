@@ -103,7 +103,7 @@ const TextInputWrapper = forwardRef(
                         : "rgi-largeLabel"
                       : "rgi-labelSizes",
                     "text-neutral-2 transition-all relative text-[10px] sm:text-xs md:text-sm ",
-                    "rgi-label",
+                    "rgi-label"
                   )}
                 >
                   {label}
@@ -225,8 +225,8 @@ const TextInputWrapper = forwardRef(
           >
             <span
               className={clsx(
-                "text-base ml-1 rgi-errorHelperTextIcon",
-                errorHelperTextIcon ? "" : "icon-alert-triangle"
+                errorHelperTextIcon ? "" : "icon-alert-triangle",
+                "text-base ml-1 rgi-errorHelperTextIcon"
               )}
             >
               {errorHelperTextIcon}
