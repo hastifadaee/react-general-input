@@ -1,7 +1,7 @@
 {
   "name": "react-general-input",
   "private": false,
-  "version": "0.0.176",
+  "version": "0.0.179",
   "type": "module",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
@@ -20,6 +20,7 @@
     "@material-tailwind/react": "^2.1.10",
     "check-password-strength": "^2.0.10",
     "clsx": "^2.1.1",
+    "formik": "^2.4.9",
     "npm": "^11.7.0",
     "react-hook-form": "^7.55.0",
     "react-simple-keyboard": "^3.8.126",
@@ -57,7 +58,6 @@
   },
   "files": [
     "dist",
-    "README.md",
     "package.json",
     "src/assets/global.scss",
     "src/assets/fontIcons"

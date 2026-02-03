@@ -15,13 +15,16 @@ const BaseInput = ({
   thousandSeparate,
   required,
   placeholder,
+  formAdapter,
   ...props
 }: TBaseInput) => {
   return (
     <input
       autoComplete="new-password"
-      name={rhfRegister?.name ?? name}
-      ref={rhfRegister?.ref}
+      name={
+        rhfRegister ? (rhfRegister?.name ?? name) : (formAdapter?.name ?? name)
+      }
+      ref={rhfRegister ? rhfRegister?.ref : formAdapter?.ref}
       value={inputValue}
       type={type === "number" ? "text" : type}
       onFocus={() => {
@@ -35,13 +38,14 @@ const BaseInput = ({
       }}
       onBlur={(e) => {
         onBlur?.(e);
-        !thousandSeparate && rhfRegister?.onBlur(e);
+        !thousandSeparate &&
+          (rhfRegister ? rhfRegister?.onBlur(e) : formAdapter?.onBlur?.());
         setInputFocus(false);
       }}
       {...(dir === "ltr" ? { dir: "ltr" } : {})}
       className={clsx(
         "h-full transition-transform outline-none focus:!outline-none flex-grow !text-neutral-3 text-[10px] sm:text-xs md:text-sm  placeholder:text-neutral-6 focus:placeholder:opacity-0 placeholder:transition-opacity placeholder:delay-100 ease-linear rgi-baseInput",
-        dir === "ltr" && "text-left placeholder:text-right"
+        dir === "ltr" && "text-left placeholder:text-right",
       )}
       {...props}
       placeholder={required ? placeholder + "*" : placeholder}

@@ -41,6 +41,7 @@ const TextInputWrapper = forwardRef(
       passwordStrengthCheckStyle,
       passwordStrengthCheck,
       isPassword = false,
+      formAdapter,
     }: TTextInputWrapper,
     ref: any
   ) => {
@@ -80,6 +81,7 @@ const TextInputWrapper = forwardRef(
     useEffect(() => {
       if (!thousandSeparate) {
         rhfRegister?.name && setValue?.(rhfRegister?.name, inputValue);
+        // formAdapter?.name && setValue?.(formAdapter?.name, inputValue);
       }
     }, [inputValue]);
     return (

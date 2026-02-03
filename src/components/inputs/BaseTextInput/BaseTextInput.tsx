@@ -36,6 +36,7 @@ const BaseTextInput = ({
   size,
   errorHelperText = "",
   errorHelperTextIcon,
+  formAdapter,
   ...props
 }: TBaseTextInput) => {
   const [inputValue, setInputValue] = useState<string>(defaultValue ?? "");
@@ -45,6 +46,7 @@ const BaseTextInput = ({
   }, [defaultValue]);
   return (
     <TextInputWrapper
+      formAdapter={formAdapter}
       errorHelperText={errorHelperText}
       errorHelperTextIcon={errorHelperTextIcon}
       size={size}
@@ -80,9 +82,12 @@ const BaseTextInput = ({
         inputValue={inputValue}
         onChange={(e) => {
           rhfRegister?.onChange(e);
+          formAdapter?.onChange?.(e);
+          formAdapter && setValue?.(formAdapter.name, e.target.value);
           setInputValue(e.target.value);
           onChange?.(e);
           rhfRegister?.onChange(e);
+          formAdapter?.onChange?.(e);
         }}
         rhfRegister={rhfRegister}
         placeholder={placeholder}
@@ -90,6 +95,7 @@ const BaseTextInput = ({
         iconClickCallBack={iconClickCallBack}
         setInputFocus={setInputFocus}
         name={name}
+        formAdapter={formAdapter}
       />
     </TextInputWrapper>
   );

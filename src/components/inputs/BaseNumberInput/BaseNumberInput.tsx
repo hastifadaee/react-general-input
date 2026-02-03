@@ -37,11 +37,12 @@ const BaseNumberInput = ({
   size,
   errorHelperText = "",
   errorHelperTextIcon,
+  formAdapter,
   ...props
 }: TBaseNumberInput) => {
   const [inputFocus, setInputFocus] = useState(false);
   const [inputValue, setInputValue] = useState(
-    thousandSeparate ? addCommas(defaultValue || "") : defaultValue ?? ""
+    thousandSeparate ? addCommas(defaultValue || "") : (defaultValue ?? ""),
   );
   useEffect(() => {
     thousandSeparate
@@ -79,6 +80,7 @@ const BaseNumberInput = ({
       thousandSeparate={thousandSeparate}
       clearErrors={clearErrors}
       rhfOptions={rhfOptions}
+      formAdapter={formAdapter}
     >
       <BaseInput
         {...props}
@@ -92,8 +94,11 @@ const BaseNumberInput = ({
             : rawValue;
           setInputValue(formattedValue);
           rhfRegister?.onChange({ target: { name, value: rawValue } });
+          formAdapter?.onChange?.({ target: { name, value: rawValue } });
           onChange?.({ ...e, target: { ...e.target, value: rawValue } });
+          formAdapter && setValue?.(formAdapter?.name, formattedValue);
         }}
+        formAdapter={formAdapter}
         thousandSeparate={thousandSeparate}
         rhfRegister={rhfRegister}
         placeholder={placeholder}

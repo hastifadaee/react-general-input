@@ -1,3 +1,4 @@
+import { FormikErrors } from "formik";
 import {
   CSSProperties,
   Dispatch,
@@ -25,8 +26,18 @@ export type RHFRegister = {
   name: string;
   ref: React.Ref<HTMLInputElement>;
 };
+
+export type FormAdapter = {
+  name: string;
+  value: any;
+  onChange?: (val: { target: any; type?: any }) => void;
+  onBlur?: () => void;
+  ref?: React.Ref<HTMLInputElement>;
+};
+
 export type TGeneralInputType = {
   rhfRegister?: RHFRegister;
+  formAdapter?: FormAdapter;
   iconClickCallBack?: (value: any) => void;
   defaultValue?: string;
 } & HTMLInputType;
@@ -43,6 +54,14 @@ export type ErrorText =
   | FieldError
   | Merge<FieldError, FieldErrorsImpl<any>>;
 
+export type TFormikSetValue = (
+  field: string,
+  value: any,
+  shouldValidate?: boolean | undefined,
+) => Promise<void | FormikErrors<{
+  identifier: string;
+}>>;
+
 export type TInputBaseType = {
   required?: boolean;
   size?: "small" | "medium" | "large";
@@ -58,7 +77,7 @@ export type TInputBaseType = {
   endIcon?: string | ReactNode;
   multiLangKeyboard?: boolean;
   ref?: any;
-  setValue?: UseFormSetValue<any>;
+  setValue?: UseFormSetValue<any> | TFormikSetValue;
   startIcon?: string | ReactNode;
   clearErrors?: UseFormClearErrors<any>;
   rhfOptions?: RegisterOptions<any>;

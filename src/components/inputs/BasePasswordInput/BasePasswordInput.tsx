@@ -33,6 +33,7 @@ const BasePasswordInput = ({
   errorHelperText = "",
   errorHelperTextIcon,
   passwordIcon,
+  formAdapter,
   passwordStrengthData = [
     {
       text: "خیلی ضعیف",
@@ -71,7 +72,7 @@ const BasePasswordInput = ({
       passwordStrengthCheckStyle={clsx(
         inputValue &&
           passwordStrengthCheck &&
-          passwordStrengthData[passwordStrength(inputValue).id].borderColor
+          passwordStrengthData[passwordStrength(inputValue).id].borderColor,
       )}
       passwordStrengthCheck={(inputValue && passwordStrengthCheck) as boolean}
       errorHelperText={errorHelperText}
@@ -95,6 +96,7 @@ const BasePasswordInput = ({
       iconClickCallBack={iconClickCallBack}
       multiLangKeyboard={multiLangKeyboard}
       rhfRegister={rhfRegister}
+      formAdapter={formAdapter}
       ref={ref}
       setValue={setValue}
       startIcon={startIcon}
@@ -105,7 +107,7 @@ const BasePasswordInput = ({
         <p
           className={clsx(
             "text-[10px] sm:text-xs md:text-sm flex items-center mt-2 absolute top-[-30px] md:top-[-35px] left-0 rgi-passwordStrengthCheck",
-            passwordStrengthData[passwordStrength(inputValue).id].textColor
+            passwordStrengthData[passwordStrength(inputValue).id].textColor,
           )}
         >
           {passwordStrengthData[passwordStrength(inputValue).id]?.text}
@@ -113,16 +115,20 @@ const BasePasswordInput = ({
       )}
       <BaseInput
         {...props}
+        formAdapter={formAdapter}
         required={required}
         type={showPassword ? "text" : "password"}
         onChange={(e) => {
           rhfRegister?.onChange(e);
+          formAdapter?.onChange?.(e);
           setInputValue(passwordCharChecker(e));
+          formAdapter && setValue?.(formAdapter.name, e.target.value);
           onChange?.({
             ...e,
             target: { ...e.target, value: passwordCharChecker(e) },
           });
           rhfRegister?.onChange(e);
+          formAdapter?.onChange?.(e);
         }}
         inputValue={inputValue}
         rhfRegister={rhfRegister}
@@ -136,7 +142,7 @@ const BasePasswordInput = ({
         className={clsx(
           showPassword ? "icon-eye text-xl" : "icon-eye-off",
           "rgi-passwordIcon inline-flex justify-end items-center text-base cursor-pointer text-primary-6 w-[18px] h-[18px] sm:w-8 sm:h-8 rounded-[100%] ",
-          endIcon && "justify-center"
+          endIcon && "justify-center",
         )}
       >
         {passwordIcon}
