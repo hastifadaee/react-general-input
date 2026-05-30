@@ -39,7 +39,6 @@ export type TGeneralInputType = {
   rhfRegister?: RHFRegister;
   formAdapter?: FormAdapter;
   iconClickCallBack?: (value: any) => void;
-  defaultValue?: string;
 } & HTMLInputType;
 
 export type TBaseInput = {
@@ -47,6 +46,7 @@ export type TBaseInput = {
   inputValue: string;
   thousandSeparate?: boolean;
   setInputFocus: Dispatch<SetStateAction<boolean>>;
+  defaultValue?: string;
 } & TGeneralInputType;
 
 export type ErrorText =
@@ -83,28 +83,34 @@ export type TInputBaseType = {
   rhfOptions?: RegisterOptions<any>;
 } & TGeneralInputType;
 
+export type TGeneralWrapperType = {
+  setInputValue: Dispatch<SetStateAction<string>>;
+  inputValue: string;
+  type?: "string" | "number";
+  defaultValue?: string | number;
+};
+
 export type TTextInputWrapper = {
   isPassword?: boolean;
   passwordStrengthCheck?: boolean;
   passwordStrengthCheckStyle?: string;
-  defaultValue?: string;
   inputFocus: boolean;
   disabled?: boolean;
   className?: string;
   placeholder?: string;
   required: boolean;
   thousandSeparate?: boolean;
-  setInputValue: Dispatch<SetStateAction<string>>;
-  inputValue: string;
   iconVariant?: "contained" | "outlined";
   children: ReactNode;
   passwordIconClassName?: string;
-} & Omit<TInputBaseType, keyof HTMLInputType>;
+} & TGeneralWrapperType &
+  Omit<TInputBaseType, keyof HTMLInputType>;
 
 export type TBaseTextInput = {
   startIcon?: string | ReactNode;
   iconVariant?: "contained" | "outlined";
   type?: "text" | "email" | "search";
+  defaultValue?: string;
 } & TInputBaseType;
 
 export type TPasswordInput = {
@@ -115,9 +121,11 @@ export type TPasswordInput = {
     textColor: string;
     borderColor: string;
   }[];
+  defaultValue?: string;
 } & TInputBaseType;
 
 export type TBaseNumberInput = {
   thousandSeparate?: boolean;
   iconVariant?: "contained" | "outlined";
+  defaultValue?: number | string;
 } & TInputBaseType;

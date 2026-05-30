@@ -1,2 +1,2 @@
-export const addCommas = (num: string) =>
+export const addCommas = (num: number | string) =>
 num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");

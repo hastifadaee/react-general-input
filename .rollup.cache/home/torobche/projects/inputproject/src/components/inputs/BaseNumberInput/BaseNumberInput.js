@@ -23,8 +23,10 @@ var BaseNumberInput = function (_a) {
                     ? thousandSeparator(e.target.value)
                     : rawValue;
                 setInputValue(formattedValue);
-                rhfRegister === null || rhfRegister === void 0 ? void 0 : rhfRegister.onChange({ target: { name: name, value: rawValue } });
-                (_a = formAdapter === null || formAdapter === void 0 ? void 0 : formAdapter.onChange) === null || _a === void 0 ? void 0 : _a.call(formAdapter, { target: { name: name, value: rawValue } });
+                rhfRegister === null || rhfRegister === void 0 ? void 0 : rhfRegister.onChange({ target: { name: name, value: Number(rawValue) } });
+                (_a = formAdapter === null || formAdapter === void 0 ? void 0 : formAdapter.onChange) === null || _a === void 0 ? void 0 : _a.call(formAdapter, {
+                    target: { name: name, value: Number(rawValue) },
+                });
                 onChange === null || onChange === void 0 ? void 0 : onChange(__assign(__assign({}, e), { target: __assign(__assign({}, e.target), { value: rawValue }) }));
                 formAdapter && (setValue === null || setValue === void 0 ? void 0 : setValue(formAdapter === null || formAdapter === void 0 ? void 0 : formAdapter.name, formattedValue));
             }, formAdapter: formAdapter, thousandSeparate: thousandSeparate, rhfRegister: rhfRegister, placeholder: placeholder, disabled: disabled, name: name, iconClickCallBack: iconClickCallBack, setInputFocus: setInputFocus })) }));

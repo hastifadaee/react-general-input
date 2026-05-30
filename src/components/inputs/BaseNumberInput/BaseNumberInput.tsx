@@ -41,16 +41,37 @@ const BaseNumberInput = ({
   ...props
 }: TBaseNumberInput) => {
   const [inputFocus, setInputFocus] = useState(false);
-  const [inputValue, setInputValue] = useState(
-    thousandSeparate ? addCommas(defaultValue || "") : (defaultValue ?? ""),
-  );
+  const normalizedDefaultValue =
+    typeof defaultValue === "number" && Number.isNaN(defaultValue)
+      ? undefined
+      : defaultValue;
+  const [inputValue, setInputValue] = useState<string>(() => {
+    if (normalizedDefaultValue === undefined) return "";
+
+    return thousandSeparate
+      ? addCommas(normalizedDefaultValue)
+      : String(normalizedDefaultValue);
+  });
   useEffect(() => {
-    thousandSeparate
-      ? setInputValue(addCommas(removeNonNumeric(defaultValue || "")))
-      : setInputValue(defaultValue || "");
-  }, [defaultValue]);
+    const normalized =
+      typeof defaultValue === "number" && Number.isNaN(defaultValue)
+        ? undefined
+        : defaultValue;
+
+    if (normalized === undefined) {
+      setInputValue("");
+      return;
+    }
+
+    setInputValue(
+      thousandSeparate
+        ? addCommas(removeNonNumeric(normalized))
+        : String(normalized),
+    );
+  }, [defaultValue, thousandSeparate]);
   return (
     <TextInputWrapper
+      type={thousandSeparate ? "string" : "number"}
       errorHelperText={errorHelperText}
       errorHelperTextIcon={errorHelperTextIcon}
       size={size}
@@ -92,11 +113,12 @@ const BaseNumberInput = ({
           const formattedValue = thousandSeparate
             ? thousandSeparator(e.target.value)
             : rawValue;
+          const numericValue = rawValue === "" ? undefined : Number(rawValue);
           setInputValue(formattedValue);
           rhfRegister?.onChange({ target: { name, value: rawValue } });
-          formAdapter?.onChange?.({ target: { name, value: rawValue } });
+          formAdapter?.onChange?.({ target: { name, value: numericValue } });
           onChange?.({ ...e, target: { ...e.target, value: rawValue } });
-          formAdapter && setValue?.(formAdapter?.name, formattedValue);
+          formAdapter && setValue?.(formAdapter?.name, numericValue);
         }}
         formAdapter={formAdapter}
         thousandSeparate={thousandSeparate}

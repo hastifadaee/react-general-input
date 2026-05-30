@@ -26,7 +26,7 @@ const BaseInput = ({
       }
       ref={rhfRegister ? rhfRegister?.ref : formAdapter?.ref}
       value={inputValue}
-      type={type === "number" ? "text" : type}
+      type={type}
       onFocus={() => {
         setInputFocus(true);
       }}

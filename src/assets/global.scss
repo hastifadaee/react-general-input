@@ -1,10 +1,10 @@
 @font-face {
   font-family: "icomoon";
-  src: url("./fontIcons/icomoon.eot?uxxwwm");
-  src: url("./fontIcons/icomoon.eot?uxxwwm#uxxwwm") format("embedded-opentype"),
-    url("./fontIcons/icomoon.ttf?uxxwwm") format("truetype"),
-    url("./fontIcons/icomoon.woff?uxxwwm") format("woff"),
-    url("./fontIcons/icomoon.svg?uxxwwm#icomoon") format("svg");
+  src: url("./fontIcons/icomoon.eot?oafywd");
+  src: url("./fontIcons/icomoon.eot?oafywd#oafywd") format("embedded-opentype"),
+    url("./fontIcons/icomoon.ttf?oafywd") format("truetype"),
+    url("./fontIcons/icomoon.woff?oafywd") format("woff"),
+    url("./fontIcons/icomoon.svg?oafywd#icomoon") format("svg");
   font-weight: normal;
   font-style: normal;
   font-display: block;
@@ -25,6 +25,9 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+.icon-Danger-Triangle:before {
+  content: "\e100";
+}
 .icon-eye:before {
   content: "\e101";
 }
