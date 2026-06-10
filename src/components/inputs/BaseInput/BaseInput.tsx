@@ -20,6 +20,9 @@ const BaseInput = ({
 }: TBaseInput) => {
   return (
     <input
+      style={{
+        MozAppearance: "textfield",
+      }}
       autoComplete="new-password"
       name={
         rhfRegister ? (rhfRegister?.name ?? name) : (formAdapter?.name ?? name)

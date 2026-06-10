@@ -28,7 +28,8 @@ const BaseTextInput = ({
   iconVariant,
   multiLangKeyboard,
   ref,
-  setValue,
+  rhfSetValue,
+  formikSetValue,
   wrapperStyle,
   clearErrors,
   rhfOptions,
@@ -72,7 +73,8 @@ const BaseTextInput = ({
       multiLangKeyboard={multiLangKeyboard}
       rhfRegister={rhfRegister}
       ref={ref}
-      setValue={setValue}
+      formikSetValue={formikSetValue}
+      rhfSetValue={rhfSetValue}
       clearErrors={clearErrors}
       rhfOptions={rhfOptions}
     >
@@ -83,7 +85,7 @@ const BaseTextInput = ({
         onChange={(e) => {
           rhfRegister?.onChange(e);
           formAdapter?.onChange?.(e);
-          formAdapter && setValue?.(formAdapter.name, e.target.value);
+          formAdapter && formikSetValue?.(formAdapter.name, e.target.value);
           setInputValue(e.target.value);
           onChange?.(e);
           rhfRegister?.onChange(e);

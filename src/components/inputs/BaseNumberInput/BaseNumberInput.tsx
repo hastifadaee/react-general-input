@@ -28,7 +28,8 @@ const BaseNumberInput = ({
   endIcon,
   multiLangKeyboard,
   ref,
-  setValue,
+  formikSetValue,
+  rhfSetValue,
   startIcon,
   wrapperStyle,
   clearErrors,
@@ -38,6 +39,7 @@ const BaseNumberInput = ({
   errorHelperText = "",
   errorHelperTextIcon,
   formAdapter,
+  shouldFormikReturnNumber = false,
   ...props
 }: TBaseNumberInput) => {
   const [inputFocus, setInputFocus] = useState(false);
@@ -96,7 +98,8 @@ const BaseNumberInput = ({
       multiLangKeyboard={multiLangKeyboard}
       rhfRegister={rhfRegister}
       ref={ref}
-      setValue={setValue}
+      formikSetValue={formikSetValue}
+      rhfSetValue={rhfSetValue}
       startIcon={startIcon}
       thousandSeparate={thousandSeparate}
       clearErrors={clearErrors}
@@ -115,10 +118,24 @@ const BaseNumberInput = ({
             : rawValue;
           const numericValue = rawValue === "" ? undefined : Number(rawValue);
           setInputValue(formattedValue);
-          rhfRegister?.onChange({ target: { name, value: rawValue } });
-          formAdapter?.onChange?.({ target: { name, value: numericValue } });
-          onChange?.({ ...e, target: { ...e.target, value: rawValue } });
-          formAdapter && setValue?.(formAdapter?.name, numericValue);
+          rhfRegister?.onChange({
+            target: { name, value: rawValue === "" ? NaN : Number(rawValue) },
+          });
+          formAdapter?.onChange?.({
+            target: {
+              name,
+              value: shouldFormikReturnNumber ? numericValue : rawValue,
+            },
+          });
+          onChange?.({
+            ...e,
+            target: { ...e.target, value: rawValue, type: "number" },
+          });
+          formAdapter &&
+            formikSetValue?.(
+              formAdapter?.name,
+              shouldFormikReturnNumber ? numericValue : formattedValue,
+            );
         }}
         formAdapter={formAdapter}
         thousandSeparate={thousandSeparate}

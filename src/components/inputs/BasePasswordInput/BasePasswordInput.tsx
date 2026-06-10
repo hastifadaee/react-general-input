@@ -22,7 +22,8 @@ const BasePasswordInput = ({
   error = false,
   required = false,
   name,
-  setValue,
+  rhfSetValue,
+  formikSetValue,
   multiLangKeyboard,
   ref,
   startIcon,
@@ -57,6 +58,7 @@ const BasePasswordInput = ({
     },
   ],
   size,
+  closePasswordIcon,
   ...props
 }: TPasswordInput) => {
   const [inputFocus, setInputFocus] = useState(false);
@@ -98,7 +100,8 @@ const BasePasswordInput = ({
       rhfRegister={rhfRegister}
       formAdapter={formAdapter}
       ref={ref}
-      setValue={setValue}
+      formikSetValue={formikSetValue}
+      rhfSetValue={rhfSetValue}
       startIcon={startIcon}
       clearErrors={clearErrors}
       rhfOptions={rhfOptions}
@@ -122,7 +125,7 @@ const BasePasswordInput = ({
           rhfRegister?.onChange(e);
           formAdapter?.onChange?.(e);
           setInputValue(passwordCharChecker(e));
-          formAdapter && setValue?.(formAdapter.name, e.target.value);
+          formAdapter && formikSetValue?.(formAdapter.name, e.target.value);
           onChange?.({
             ...e,
             target: { ...e.target, value: passwordCharChecker(e) },
@@ -140,12 +143,16 @@ const BasePasswordInput = ({
       <span
         onClick={() => setShowPassword(!showPassword)}
         className={clsx(
-          showPassword ? "icon-eye text-xl" : "icon-eye-off",
+          passwordIcon
+            ? ""
+            : showPassword
+              ? "icon-eye text-xl"
+              : "icon-eye-off",
           "rgi-passwordIcon inline-flex justify-end items-center text-base cursor-pointer text-primary-6 w-[18px] h-[18px] sm:w-8 sm:h-8 rounded-[100%] ",
           endIcon && "justify-center",
         )}
       >
-        {passwordIcon}
+        {showPassword ? passwordIcon : closePasswordIcon}
       </span>
     </TextInputWrapper>
   );

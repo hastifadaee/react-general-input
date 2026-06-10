@@ -25,6 +25,11 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+input[type=number] {
+  -moz-appearance: textfield !important;
+}
+
+
 .icon-Danger-Triangle:before {
   content: "\e100";
 }

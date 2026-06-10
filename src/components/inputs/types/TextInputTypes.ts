@@ -13,6 +13,7 @@ import {
   Merge,
   RegisterOptions,
   UseFormClearErrors,
+  UseFormRegisterReturn,
   UseFormSetValue,
 } from "react-hook-form";
 
@@ -36,7 +37,7 @@ export type FormAdapter = {
 };
 
 export type TGeneralInputType = {
-  rhfRegister?: RHFRegister;
+  rhfRegister?: UseFormRegisterReturn;
   formAdapter?: FormAdapter;
   iconClickCallBack?: (value: any) => void;
 } & HTMLInputType;
@@ -55,12 +56,10 @@ export type ErrorText =
   | Merge<FieldError, FieldErrorsImpl<any>>;
 
 export type TFormikSetValue = (
-  field: string,
+  field: any,
   value: any,
   shouldValidate?: boolean | undefined,
-) => Promise<void | FormikErrors<{
-  identifier: string;
-}>>;
+) => Promise<void | FormikErrors<any>>;
 
 export type TInputBaseType = {
   required?: boolean;
@@ -77,7 +76,8 @@ export type TInputBaseType = {
   endIcon?: string | ReactNode;
   multiLangKeyboard?: boolean;
   ref?: any;
-  setValue?: UseFormSetValue<any> | TFormikSetValue;
+  rhfSetValue?: UseFormSetValue<any>;
+  formikSetValue?: TFormikSetValue;
   startIcon?: string | ReactNode;
   clearErrors?: UseFormClearErrors<any>;
   rhfOptions?: RegisterOptions<any>;
@@ -102,7 +102,6 @@ export type TTextInputWrapper = {
   thousandSeparate?: boolean;
   iconVariant?: "contained" | "outlined";
   children: ReactNode;
-  passwordIconClassName?: string;
 } & TGeneralWrapperType &
   Omit<TInputBaseType, keyof HTMLInputType>;
 
@@ -116,6 +115,7 @@ export type TBaseTextInput = {
 export type TPasswordInput = {
   passwordStrengthCheck?: boolean;
   passwordIcon?: ReactNode;
+  closePasswordIcon?: ReactNode;
   passwordStrengthData?: {
     text: string;
     textColor: string;
@@ -128,4 +128,5 @@ export type TBaseNumberInput = {
   thousandSeparate?: boolean;
   iconVariant?: "contained" | "outlined";
   defaultValue?: number | string;
+  shouldFormikReturnNumber?: boolean;
 } & TInputBaseType;
