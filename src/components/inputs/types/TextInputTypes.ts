@@ -128,5 +128,5 @@ export type TBaseNumberInput = {
   thousandSeparate?: boolean;
   iconVariant?: "contained" | "outlined";
   defaultValue?: number | string;
-  shouldFormikReturnNumber?: boolean;
+  shouldReturnNumber?: boolean;
 } & TInputBaseType;

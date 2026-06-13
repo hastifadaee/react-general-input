@@ -39,7 +39,7 @@ const BaseNumberInput = ({
   errorHelperText = "",
   errorHelperTextIcon,
   formAdapter,
-  shouldFormikReturnNumber = false,
+  shouldReturnNumber = false,
   ...props
 }: TBaseNumberInput) => {
   const [inputFocus, setInputFocus] = useState(false);
@@ -119,12 +119,19 @@ const BaseNumberInput = ({
           const numericValue = rawValue === "" ? undefined : Number(rawValue);
           setInputValue(formattedValue);
           rhfRegister?.onChange({
-            target: { name, value: rawValue === "" ? NaN : Number(rawValue) },
+            target: {
+              name,
+              value: shouldReturnNumber
+                ? rawValue === ""
+                  ? NaN
+                  : Number(rawValue)
+                : rawValue,
+            },
           });
           formAdapter?.onChange?.({
             target: {
               name,
-              value: shouldFormikReturnNumber ? numericValue : rawValue,
+              value: shouldReturnNumber ? numericValue : rawValue,
             },
           });
           onChange?.({
@@ -134,7 +141,7 @@ const BaseNumberInput = ({
           formAdapter &&
             formikSetValue?.(
               formAdapter?.name,
-              shouldFormikReturnNumber ? numericValue : formattedValue,
+              shouldReturnNumber ? numericValue : formattedValue,
             );
         }}
         formAdapter={formAdapter}
