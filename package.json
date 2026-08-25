@@ -1,7 +1,7 @@
 {
   "name": "react-general-input",
   "private": false,
-  "version": "0.0.202",
+  "version": "0.0.214",
   "type": "module",
   "main": "dist/index.js",
   "module": "dist/index.mjs",

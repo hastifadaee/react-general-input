@@ -1,7 +1,7 @@
 "use client";
 import BaseInput from "../BaseInput/BaseInput";
 import { TBaseNumberInput } from "../types/TextInputTypes";
-import { useEffect, useState } from "react";
+import { useEffect, useLayoutEffect, useState } from "react";
 import TextInputWrapper from "../TextInputWrapper/TextInputWrapper";
 import { addCommas } from "@/utils/addCommas";
 import { removeNonNumeric } from "@/utils/removeNonNumeric";
@@ -28,8 +28,8 @@ const BaseNumberInput = ({
   endIcon,
   multiLangKeyboard,
   ref,
-  formikSetValue,
   rhfSetValue,
+  formikSetValue,
   startIcon,
   wrapperStyle,
   clearErrors,
@@ -39,41 +39,24 @@ const BaseNumberInput = ({
   errorHelperText = "",
   errorHelperTextIcon,
   formAdapter,
-  shouldReturnNumber = false,
   ...props
 }: TBaseNumberInput) => {
   const [inputFocus, setInputFocus] = useState(false);
-  const normalizedDefaultValue =
-    typeof defaultValue === "number" && Number.isNaN(defaultValue)
-      ? undefined
-      : defaultValue;
-  const [inputValue, setInputValue] = useState<string>(() => {
-    if (normalizedDefaultValue === undefined) return "";
-
-    return thousandSeparate
-      ? addCommas(normalizedDefaultValue)
-      : String(normalizedDefaultValue);
-  });
+  const [inputValue, setInputValue] = useState(
+    thousandSeparate
+      ? addCommas(defaultValue || "")
+      : (defaultValue?.toString() ?? ""),
+  );
   useEffect(() => {
-    const normalized =
-      typeof defaultValue === "number" && Number.isNaN(defaultValue)
-        ? undefined
-        : defaultValue;
+    thousandSeparate
+      ? setInputValue(addCommas(removeNonNumeric(defaultValue || "")))
+      : setInputValue(defaultValue?.toString() || "");
+  }, [defaultValue]);
 
-    if (normalized === undefined) {
-      setInputValue("");
-      return;
-    }
-
-    setInputValue(
-      thousandSeparate
-        ? addCommas(removeNonNumeric(normalized))
-        : String(normalized),
-    );
-  }, [defaultValue, thousandSeparate]);
   return (
     <TextInputWrapper
       type={thousandSeparate ? "string" : "number"}
+      setInputValue={setInputValue}
       errorHelperText={errorHelperText}
       errorHelperTextIcon={errorHelperTextIcon}
       size={size}
@@ -86,7 +69,8 @@ const BaseNumberInput = ({
       numericKeyboard={numericKeyboard}
       haveKeyboard={haveKeyboard}
       inputValue={inputValue}
-      setInputValue={setInputValue}
+      formikSetValue={formikSetValue}
+      rhfSetValue={rhfSetValue}
       className={className}
       helperText={helperText}
       disabled={disabled}
@@ -98,8 +82,6 @@ const BaseNumberInput = ({
       multiLangKeyboard={multiLangKeyboard}
       rhfRegister={rhfRegister}
       ref={ref}
-      formikSetValue={formikSetValue}
-      rhfSetValue={rhfSetValue}
       startIcon={startIcon}
       thousandSeparate={thousandSeparate}
       clearErrors={clearErrors}
@@ -116,33 +98,11 @@ const BaseNumberInput = ({
           const formattedValue = thousandSeparate
             ? thousandSeparator(e.target.value)
             : rawValue;
-          const numericValue = rawValue === "" ? undefined : Number(rawValue);
+          rhfRegister?.onChange({ target: { name, value: rawValue } });
+          formAdapter?.onChange?.({ target: { name, value: rawValue } });
+          onChange?.({ ...e, target: { ...e.target, value: rawValue } });
+          formAdapter && formikSetValue?.(formAdapter?.name, formattedValue);
           setInputValue(formattedValue);
-          rhfRegister?.onChange({
-            target: {
-              name,
-              value: shouldReturnNumber
-                ? rawValue === ""
-                  ? NaN
-                  : Number(rawValue)
-                : rawValue,
-            },
-          });
-          formAdapter?.onChange?.({
-            target: {
-              name,
-              value: shouldReturnNumber ? numericValue : rawValue,
-            },
-          });
-          onChange?.({
-            ...e,
-            target: { ...e.target, value: rawValue, type: "number" },
-          });
-          formAdapter &&
-            formikSetValue?.(
-              formAdapter?.name,
-              shouldReturnNumber ? numericValue : formattedValue,
-            );
         }}
         formAdapter={formAdapter}
         thousandSeparate={thousandSeparate}

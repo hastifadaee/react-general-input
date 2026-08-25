@@ -13,7 +13,6 @@ import {
   Merge,
   RegisterOptions,
   UseFormClearErrors,
-  UseFormRegisterReturn,
   UseFormSetValue,
 } from "react-hook-form";
 
@@ -37,9 +36,10 @@ export type FormAdapter = {
 };
 
 export type TGeneralInputType = {
-  rhfRegister?: UseFormRegisterReturn;
+  rhfRegister?: RHFRegister;
   formAdapter?: FormAdapter;
   iconClickCallBack?: (value: any) => void;
+  defaultValue?: string;
 } & HTMLInputType;
 
 export type TBaseInput = {
@@ -47,7 +47,6 @@ export type TBaseInput = {
   inputValue: string;
   thousandSeparate?: boolean;
   setInputFocus: Dispatch<SetStateAction<boolean>>;
-  defaultValue?: string;
 } & TGeneralInputType;
 
 export type ErrorText =
@@ -56,10 +55,12 @@ export type ErrorText =
   | Merge<FieldError, FieldErrorsImpl<any>>;
 
 export type TFormikSetValue = (
-  field: any,
+  field: string,
   value: any,
   shouldValidate?: boolean | undefined,
-) => Promise<void | FormikErrors<any>>;
+) => Promise<void | FormikErrors<{
+  identifier: string;
+}>>;
 
 export type TInputBaseType = {
   required?: boolean;
@@ -83,50 +84,42 @@ export type TInputBaseType = {
   rhfOptions?: RegisterOptions<any>;
 } & TGeneralInputType;
 
-export type TGeneralWrapperType = {
-  setInputValue: Dispatch<SetStateAction<string>>;
-  inputValue: string;
-  type?: "string" | "number";
-  defaultValue?: string | number;
-};
-
 export type TTextInputWrapper = {
   isPassword?: boolean;
   passwordStrengthCheck?: boolean;
   passwordStrengthCheckStyle?: string;
+  defaultValue?: string;
   inputFocus: boolean;
   disabled?: boolean;
   className?: string;
   placeholder?: string;
   required: boolean;
   thousandSeparate?: boolean;
+  setInputValue: Dispatch<SetStateAction<string>>;
+  inputValue: string;
   iconVariant?: "contained" | "outlined";
   children: ReactNode;
-} & TGeneralWrapperType &
-  Omit<TInputBaseType, keyof HTMLInputType>;
+  passwordIconClassName?: string;
+  type: any;
+} & Omit<TInputBaseType, keyof HTMLInputType>;
 
 export type TBaseTextInput = {
   startIcon?: string | ReactNode;
   iconVariant?: "contained" | "outlined";
   type?: "text" | "email" | "search";
-  defaultValue?: string;
 } & TInputBaseType;
 
 export type TPasswordInput = {
   passwordStrengthCheck?: boolean;
   passwordIcon?: ReactNode;
-  closePasswordIcon?: ReactNode;
   passwordStrengthData?: {
     text: string;
     textColor: string;
     borderColor: string;
   }[];
-  defaultValue?: string;
 } & TInputBaseType;
 
 export type TBaseNumberInput = {
   thousandSeparate?: boolean;
   iconVariant?: "contained" | "outlined";
-  defaultValue?: number | string;
-  shouldReturnNumber?: boolean;
 } & TInputBaseType;
