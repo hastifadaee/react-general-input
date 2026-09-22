@@ -58,9 +58,7 @@ export type TFormikSetValue = (
   field: string,
   value: any,
   shouldValidate?: boolean | undefined,
-) => Promise<void | FormikErrors<{
-  identifier: string;
-}>>;
+) => Promise<void | FormikErrors<any>>;
 
 export type TInputBaseType = {
   required?: boolean;
@@ -120,6 +118,7 @@ export type TPasswordInput = {
 } & TInputBaseType;
 
 export type TBaseNumberInput = {
+  defaultValue?: string | number;
   thousandSeparate?: boolean;
   iconVariant?: "contained" | "outlined";
-} & TInputBaseType;
+} & Omit<TInputBaseType, "defaultValue">;

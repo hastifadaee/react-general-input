@@ -1,7 +1,7 @@
 "use client";
 import BaseInput from "../BaseInput/BaseInput";
 import { TBaseNumberInput } from "../types/TextInputTypes";
-import { useEffect, useLayoutEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import TextInputWrapper from "../TextInputWrapper/TextInputWrapper";
 import { addCommas } from "@/utils/addCommas";
 import { removeNonNumeric } from "@/utils/removeNonNumeric";
@@ -41,17 +41,18 @@ const BaseNumberInput = ({
   formAdapter,
   ...props
 }: TBaseNumberInput) => {
+  const normalizedDefaultValue = defaultValue?.toString() ?? "";
   const [inputFocus, setInputFocus] = useState(false);
   const [inputValue, setInputValue] = useState(
     thousandSeparate
-      ? addCommas(defaultValue || "")
-      : (defaultValue?.toString() ?? ""),
+      ? addCommas(normalizedDefaultValue)
+      : normalizedDefaultValue,
   );
   useEffect(() => {
     thousandSeparate
-      ? setInputValue(addCommas(removeNonNumeric(defaultValue || "")))
-      : setInputValue(defaultValue?.toString() || "");
-  }, [defaultValue]);
+      ? setInputValue(addCommas(removeNonNumeric(normalizedDefaultValue)))
+      : setInputValue(normalizedDefaultValue);
+  }, [normalizedDefaultValue, thousandSeparate]);
 
   return (
     <TextInputWrapper
@@ -76,7 +77,7 @@ const BaseNumberInput = ({
       disabled={disabled}
       inputFocus={inputFocus}
       placeholder={placeholder}
-      defaultValue={defaultValue}
+      defaultValue={normalizedDefaultValue}
       endIcon={endIcon}
       iconClickCallBack={iconClickCallBack}
       multiLangKeyboard={multiLangKeyboard}
