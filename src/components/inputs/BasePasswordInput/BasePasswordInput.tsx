@@ -70,6 +70,7 @@ const BasePasswordInput = ({
   };
   return (
     <TextInputWrapper
+      type={"string"}
       isPassword={true}
       passwordStrengthCheckStyle={clsx(
         inputValue &&

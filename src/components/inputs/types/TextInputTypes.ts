@@ -110,6 +110,7 @@ export type TBaseTextInput = {
 export type TPasswordInput = {
   passwordStrengthCheck?: boolean;
   passwordIcon?: ReactNode;
+  closePasswordIcon?: ReactNode;
   passwordStrengthData?: {
     text: string;
     textColor: string;
