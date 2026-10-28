@@ -1,5 +1,6 @@
 import { FormikErrors } from "formik";
 import {
+  ChangeEvent,
   CSSProperties,
   Dispatch,
   InputHTMLAttributes,
@@ -98,7 +99,7 @@ export type TTextInputWrapper = {
   iconVariant?: "contained" | "outlined";
   children: ReactNode;
   passwordIconClassName?: string;
-  type: any;
+  type?: "string" | "number";
 } & Omit<TInputBaseType, keyof HTMLInputType>;
 
 export type TBaseTextInput = {
@@ -118,8 +119,19 @@ export type TPasswordInput = {
   }[];
 } & TInputBaseType;
 
+export type TNumberInputChangeEvent = Omit<
+  ChangeEvent<HTMLInputElement>,
+  "target"
+> & {
+  target: {
+    name?: string;
+    value: number | undefined;
+  };
+};
+
 export type TBaseNumberInput = {
   defaultValue?: string | number;
   thousandSeparate?: boolean;
   iconVariant?: "contained" | "outlined";
-} & Omit<TInputBaseType, "defaultValue">;
+  onChange?: (event: TNumberInputChangeEvent) => void;
+} & Omit<TInputBaseType, "defaultValue" | "onChange">;

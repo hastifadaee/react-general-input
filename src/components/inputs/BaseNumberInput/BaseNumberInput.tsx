@@ -96,13 +96,20 @@ const BaseNumberInput = ({
         inputValue={inputValue}
         onChange={(e) => {
           const rawValue = removeNonNumeric(e.target.value);
+          const numericValue = rawValue === "" ? undefined : Number(rawValue);
           const formattedValue = thousandSeparate
             ? thousandSeparator(e.target.value)
             : rawValue;
-          rhfRegister?.onChange({ target: { name, value: rawValue } });
-          formAdapter?.onChange?.({ target: { name, value: rawValue } });
-          onChange?.({ ...e, target: { ...e.target, value: rawValue } });
-          formAdapter && formikSetValue?.(formAdapter?.name, formattedValue);
+          const fieldName = rhfRegister?.name ?? formAdapter?.name ?? name;
+          const numericEvent = {
+            ...e,
+            target: { ...e.target, name: fieldName, value: numericValue },
+          };
+
+          rhfRegister?.onChange(numericEvent);
+          formAdapter?.onChange?.(numericEvent);
+          onChange?.(numericEvent);
+          formAdapter && formikSetValue?.(formAdapter.name, numericValue);
           setInputValue(formattedValue);
         }}
         formAdapter={formAdapter}

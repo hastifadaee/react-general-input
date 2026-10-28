@@ -87,10 +87,16 @@ const TextInputWrapper = forwardRef(
     }, [defaultValue, type]);
     useEffect(() => {
       if (!thousandSeparate) {
-        rhfRegister?.name && rhfSetValue?.(rhfRegister?.name, inputValue);
+        const numericValue =
+          inputValue === "" ? undefined : Number(removeNonNumeric(inputValue));
+        rhfRegister?.name &&
+          rhfSetValue?.(
+            rhfRegister.name,
+            type === "number" ? numericValue : inputValue,
+          );
         // formAdapter?.name && setValue?.(formAdapter?.name, inputValue);
       }
-    }, [inputValue]);
+    }, [inputValue, rhfRegister?.name, rhfSetValue, thousandSeparate, type]);
     return (
       <div style={wrapperStyle} className={clsx("rgi-wrapper", className)}>
         <div
